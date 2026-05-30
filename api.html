@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference — LowMind Framework</title>
+  <meta name="description" content="Complete API Reference for LowMind: Tensors, Layers, Loss, Optimizers, Schedulers, Data Utilities, Metrics, Trainer, Callbacks, Models, System Monitor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">LM</div>
+      LowMind
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="api.html" class="active">API Reference</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="changelog.html">Changelog <span class="nav-badge">v2.1</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="installation.html" class="btn-nav">⚡ Get Started</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="features.html">⚡ Features</a>
+    <a href="api.html" class="active">📚 API Reference</a>
+    <a href="examples.html">💡 Examples</a>
+    <a href="installation.html">📦 Installation</a>
+    <a href="changelog.html">📋 Changelog</a>
+  </div>
+
+  <main>
+    <div class="page-banner">
+      <div class="container">
+        <div class="page-banner-label">📚 API Reference</div>
+        <h1>Complete <span style="color:var(--accent)">API Documentation</span></h1>
+        <p>Every class, function, and parameter — fully documented with code examples.</p>
+        <div class="search-box" style="margin-top:1.5rem;margin-bottom:0;">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search API (e.g. Adam, Conv2d, backward)..." />
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="api-layout">
+          <!-- Sidebar -->
+          <aside class="api-sidebar">
+            <div class="sidebar-group">
+              <div class="sidebar-title">Core</div>
+              <ul class="sidebar-nav">
+                <li><a href="#tensors">🧮 Tensors</a></li>
+                <li><a href="#autograd">🔄 Autograd</a></li>
+                <li><a href="#module">🏗️ Module</a></li>
+              </ul>
+            </div>
+            <div class="sidebar-group">
+              <div class="sidebar-title">Neural Network</div>
+              <ul class="sidebar-nav">
+                <li><a href="#layers">⬛ Layers</a></li>
+                <li><a href="#activations">⚡ Activations</a></li>
+                <li><a href="#sequential">📋 Sequential</a></li>
+                <li><a href="#loss">📉 Loss Functions</a></li>
+              </ul>
+            </div>
+            <div class="sidebar-group">
+              <div class="sidebar-title">Training</div>
+              <ul class="sidebar-nav">
+                <li><a href="#optimizers">⚙️ Optimizers</a></li>
+                <li><a href="#schedulers">📅 LR Schedulers</a></li>
+                <li><a href="#trainer">🏋️ Trainer</a></li>
+                <li><a href="#callbacks">🔔 Callbacks</a></li>
+              </ul>
+            </div>
+            <div class="sidebar-group">
+              <div class="sidebar-title">Data & Metrics</div>
+              <ul class="sidebar-nav">
+                <li><a href="#data">📦 Data Utilities</a></li>
+                <li><a href="#metrics">📊 Metrics</a></li>
+              </ul>
+            </div>
+            <div class="sidebar-group">
+              <div class="sidebar-title">Models & Utils</div>
+              <ul class="sidebar-nav">
+                <li><a href="#models">🤖 Pre-built Models</a></li>
+                <li><a href="#monitor">🖥️ System Monitor</a></li>
+                <li><a href="#init">🎯 Weight Init</a></li>
+              </ul>
+            </div>
+          </aside>
+
+          <!-- Main Content -->
+          <div>
+            <!-- TENSORS -->
+            <div class="api-section" id="tensors">
+              <div class="api-section-title">🧮 Tensors</div>
+              <p style="margin-bottom:1.5rem;"><code>lm.Tensor</code> is the core data structure — an N-dimensional array with automatic gradient tracking.</p>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.Tensor(data, requires_grad=False, device='cpu', name=None, persistent=False)</code></div>
+                <div class="table-wrap" style="margin-bottom:1rem;">
+                  <table class="feature-table">
+                    <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+                    <tbody>
+                      <tr><td>data</td><td>list / ndarray / scalar</td><td>The underlying data</td></tr>
+                      <tr><td>requires_grad</td><td>bool</td><td>Enable gradient computation. Default False.</td></tr>
+                      <tr><td>device</td><td>str</td><td>'cpu' (Raspberry Pi optimized)</td></tr>
+                      <tr><td>name</td><td>str</td><td>Memory management identifier</td></tr>
+                      <tr><td>persistent</td><td>bool</td><td>Prevent automatic LRU cleanup</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <h4 style="color:#fff;margin-bottom:1rem;">Factory Functions</h4>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="kw">import</span> <span class="nm">lowmind</span> <span class="kw">as</span> <span class="nm">lm</span>
+
+<span class="fn">lm.zeros</span>(<span class="nu">3</span>, <span class="nu">4</span>)          <span class="cm"># shape (3,4) filled with 0</span>
+<span class="fn">lm.ones</span>(<span class="nu">2</span>, <span class="nu">2</span>)           <span class="cm"># shape (2,2) filled with 1</span>
+<span class="fn">lm.randn</span>(<span class="nu">10</span>, <span class="nu">10</span>)        <span class="cm"># random normal</span>
+<span class="fn">lm.rand</span>(<span class="nu">5</span>, <span class="nu">5</span>)           <span class="cm"># random uniform [0,1]</span>
+<span class="fn">lm.arange</span>(<span class="nu">0</span>, <span class="nu">10</span>, <span class="nu">2</span>)    <span class="cm"># [0, 2, 4, 6, 8]</span>
+<span class="fn">lm.from_numpy</span>(<span class="nm">arr</span>)      <span class="cm"># wrap a numpy array</span></pre>
+              </div>
+
+              <h4 style="color:#fff;margin:1.5rem 0 1rem;">Arithmetic Operations</h4>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">a</span> <span class="op">+</span> <span class="nm">b</span>    <span class="cm"># addition (with autograd)</span>
+<span class="nm">a</span> <span class="op">-</span> <span class="nm">b</span>    <span class="cm"># subtraction</span>
+<span class="nm">a</span> <span class="op">*</span> <span class="nm">b</span>    <span class="cm"># element-wise multiply</span>
+<span class="nm">a</span> <span class="op">/</span> <span class="nm">b</span>    <span class="cm"># element-wise divide</span>
+<span class="nm">a</span> <span class="op">**</span> <span class="nu">2</span>   <span class="cm"># power</span>
+<span class="nm">a</span> <span class="op">@</span> <span class="nm">b</span>    <span class="cm"># matrix multiply</span>
+<span class="op">-</span><span class="nm">a</span>       <span class="cm"># negation</span></pre>
+              </div>
+
+              <h4 style="color:#fff;margin:1.5rem 0 1rem;">Reduction Methods</h4>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">x</span>.<span class="fn">sum</span>()                         <span class="cm"># scalar sum</span>
+<span class="nm">x</span>.<span class="fn">sum</span>(<span class="nm">axis</span><span class="op">=</span><span class="nu">0</span>)                   <span class="cm"># axis-wise sum</span>
+<span class="nm">x</span>.<span class="fn">sum</span>(<span class="nm">axis</span><span class="op">=</span><span class="nu">1</span>, <span class="nm">keepdims</span><span class="op">=</span><span class="kw">True</span>)   <span class="cm"># keepdims</span>
+<span class="nm">x</span>.<span class="fn">mean</span>()                         <span class="cm"># scalar mean</span>
+<span class="nm">x</span>.<span class="fn">mean</span>(<span class="nm">axis</span><span class="op">=</span>(<span class="nu">2</span>, <span class="nu">3</span>))              <span class="cm"># tuple axis (CNN global pooling)</span>
+<span class="nm">x</span>.<span class="fn">max</span>(<span class="nm">axis</span><span class="op">=</span><span class="nu">1</span>)                   <span class="cm"># row-wise max</span>
+<span class="nm">x</span>.<span class="fn">min</span>()                          <span class="cm"># global min</span></pre>
+              </div>
+
+              <h4 style="color:#fff;margin:1.5rem 0 1rem;">Shape Operations</h4>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">x</span>.<span class="fn">reshape</span>(<span class="nu">6</span>, <span class="nu">4</span>)             <span class="cm"># reshape</span>
+<span class="nm">x</span>.<span class="fn">flatten</span>(<span class="nm">start_dim</span><span class="op">=</span><span class="nu">1</span>)       <span class="cm"># flatten from dim 1</span>
+<span class="nm">x</span>.<span class="fn">transpose</span>((<span class="nu">0</span>, <span class="nu">2</span>, <span class="nu">1</span>))       <span class="cm"># permute axes</span>
+<span class="nm">x</span>.<span class="nm">T</span>                           <span class="cm"># transpose last two dims</span>
+<span class="nm">x</span>.<span class="fn">squeeze</span>(<span class="nm">axis</span><span class="op">=</span><span class="nu">1</span>)             <span class="cm"># remove size-1 dims</span>
+<span class="nm">x</span>.<span class="fn">unsqueeze</span>(<span class="nm">axis</span><span class="op">=</span><span class="nu">0</span>)           <span class="cm"># add new dim</span>
+<span class="nm">x</span>[<span class="nu">0</span>]                          <span class="cm"># index (gradient flows through)</span></pre>
+              </div>
+
+              <h4 style="color:#fff;margin:1.5rem 0 1rem;">Utility Properties & Methods</h4>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">t</span>.<span class="nm">shape</span>         <span class="cm"># shape tuple</span>
+<span class="nm">t</span>.<span class="nm">ndim</span>          <span class="cm"># number of dimensions</span>
+<span class="nm">t</span>.<span class="nm">size</span>          <span class="cm"># total number of elements</span>
+<span class="nm">t</span>.<span class="nm">dtype</span>         <span class="cm"># numpy dtype (float32)</span>
+<span class="nm">t</span>.<span class="fn">item</span>()        <span class="cm"># extract Python scalar</span>
+<span class="nm">t</span>.<span class="fn">numpy</span>()       <span class="cm"># get underlying numpy array</span>
+<span class="nm">t</span>.<span class="fn">detach</span>()      <span class="cm"># new tensor without grad tracking</span>
+<span class="nm">t</span>.<span class="fn">copy</span>()        <span class="cm"># full copy including grad</span>
+<span class="nm">t</span>.<span class="fn">zero_grad</span>()   <span class="cm"># fill grad with zeros</span></pre>
+              </div>
+            </div>
+
+            <!-- AUTOGRAD -->
+            <div class="api-section" id="autograd">
+              <div class="api-section-title">🔄 Autograd</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># Compute dy/dx at x=3 for y = x² + 2x + 1</span>
+<span class="nm">x</span> <span class="op">=</span> <span class="cl">lm.Tensor</span>(<span class="nu">3.0</span>, <span class="nm">requires_grad</span><span class="op">=</span><span class="kw">True</span>)
+<span class="nm">y</span> <span class="op">=</span> <span class="nm">x</span><span class="op">**</span><span class="nu">2</span> <span class="op">+</span> <span class="nu">2</span><span class="op">*</span><span class="nm">x</span> <span class="op">+</span> <span class="nu">1</span>
+<span class="nm">y</span>.<span class="fn">backward</span>()
+<span class="fn">print</span>(<span class="nm">x</span>.<span class="nm">grad</span>)   <span class="cm"># 8.0  (dy/dx = 2x+2 = 8)</span>
+
+<span class="cm"># Gradient clipping</span>
+<span class="fn">lm.clip_grad_norm</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">max_norm</span><span class="op">=</span><span class="nu">1.0</span>)
+
+<span class="cm"># Disable autograd for inference (v2.1)</span>
+<span class="kw">with</span> <span class="fn">lm.no_grad</span>():
+    <span class="nm">out</span> <span class="op">=</span> <span class="nm">model</span>(<span class="nm">X_test</span>)
+
+<span class="cm"># As decorator</span>
+<span class="op">@</span><span class="nm">lm</span>.<span class="nm">no_grad</span>
+<span class="kw">def</span> <span class="fn">predict</span>(<span class="nm">model</span>, <span class="nm">x</span>):
+    <span class="kw">return</span> <span class="nm">model</span>(<span class="nm">x</span>)</pre>
+              </div>
+            </div>
+
+            <!-- MODULE -->
+            <div class="api-section" id="module">
+              <div class="api-section-title">🏗️ Module Base Class</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># All layers subclass lm.Module</span>
+<span class="kw">class</span> <span class="cl">MyBlock</span>(<span class="cl">lm.Module</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, <span class="nm">in_f</span>, <span class="nm">out_f</span>):
+        <span class="fn">super</span>().<span class="fn">__init__</span>()
+        <span class="nm">self</span>.<span class="nm">fc</span> <span class="op">=</span> <span class="cl">lm.Linear</span>(<span class="nm">in_f</span>, <span class="nm">out_f</span>)
+        <span class="nm">self</span>.<span class="nm">bn</span> <span class="op">=</span> <span class="cl">lm.BatchNorm1d</span>(<span class="nm">out_f</span>)
+
+    <span class="kw">def</span> <span class="fn">forward</span>(<span class="nm">self</span>, <span class="nm">x</span>):
+        <span class="kw">return</span> <span class="nm">self</span>.<span class="nm">bn</span>(<span class="nm">self</span>.<span class="nm">fc</span>(<span class="nm">x</span>)).<span class="fn">relu</span>()
+
+<span class="nm">model</span>.<span class="fn">parameters</span>()        <span class="cm"># generator of all params</span>
+<span class="nm">model</span>.<span class="fn">named_parameters</span>()  <span class="cm"># generator of (name, param)</span>
+<span class="nm">model</span>.<span class="fn">train</span>()             <span class="cm"># set training mode</span>
+<span class="nm">model</span>.<span class="fn">eval</span>()              <span class="cm"># set eval mode (disables Dropout)</span>
+<span class="nm">model</span>.<span class="fn">num_parameters</span>()    <span class="cm"># total trainable param count</span>
+<span class="nm">model</span>.<span class="fn">summary</span>()           <span class="cm"># print architecture table</span>
+<span class="nm">model</span>.<span class="fn">state_dict</span>()        <span class="cm"># dict of weight arrays</span>
+<span class="nm">model</span>.<span class="fn">load_state_dict</span>(<span class="nm">sd</span>)  <span class="cm"># restore from dict</span>
+<span class="nm">model</span>.<span class="fn">save</span>(<span class="st">'/path/model.lmz'</span>)   <span class="cm"># save (gzip)</span>
+<span class="nm">model</span>.<span class="fn">load</span>(<span class="st">'/path/model.lmz'</span>)   <span class="cm"># load</span></pre>
+              </div>
+            </div>
+
+            <!-- LAYERS -->
+            <div class="api-section" id="layers">
+              <div class="api-section-title">⬛ Layers</div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.Linear(in_features, out_features, bias=True)</code></div>
+                <p style="margin-bottom:0.75rem;">Fully-connected layer. Input: (N, in_features) → Output: (N, out_features)</p>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, bias=True)</code></div>
+                <p style="margin-bottom:0.75rem;">2D convolution with im2col-based backward. Input: (N, C, H, W) → Output: (N, out_channels, H', W')</p>
+                <div class="code-block">
+                  <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                  <pre><span class="nm">conv</span> <span class="op">=</span> <span class="cl">lm.Conv2d</span>(<span class="nu">3</span>, <span class="nu">32</span>, <span class="nm">kernel_size</span><span class="op">=</span><span class="nu">3</span>, <span class="nm">padding</span><span class="op">=</span><span class="nu">1</span>)
+<span class="cm"># Input (N, 3, H, W) → Output (N, 32, H, W)</span></pre>
+                </div>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.BatchNorm1d(num_features) / lm.BatchNorm2d(num_features)</code></div>
+                <p style="margin-bottom:0.75rem;">Batch normalization with learnable gamma/beta and running stats for eval mode.</p>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.MaxPool2d(kernel_size, stride=None) / lm.AvgPool2d(kernel_size)</code></div>
+                <p style="margin-bottom:0.75rem;">Spatial pooling. Default stride equals kernel_size. Halves H and W when kernel_size=stride=2.</p>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.Dropout(p=0.5)</code></div>
+                <p style="margin-bottom:0.75rem;">Randomly zeros elements with probability p during training. Disabled automatically in eval mode.</p>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.Embedding(num_embeddings, embedding_dim)</code></div>
+                <p style="margin-bottom:0.75rem;">Learnable lookup table. Input: integer indices → Output: (len(indices), embedding_dim)</p>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.LSTM(input_size, hidden_size, num_layers=1, dropout=0.0) </code> <span class="badge badge-new">v2.1</span></div>
+                <p style="margin-bottom:0.75rem;">Long Short-Term Memory with multi-layer and dropout support.</p>
+              </div>
+
+              <div class="api-method">
+                <div class="api-method-title"><code>lm.GRU(input_size, hidden_size, num_layers=1, dropout=0.0)</code> <span class="badge badge-new">v2.1</span></div>
+                <p>Gated Recurrent Unit. Lighter than LSTM with comparable performance for many tasks.</p>
+              </div>
+            </div>
+
+            <!-- ACTIVATIONS -->
+            <div class="api-section" id="activations">
+              <div class="api-section-title">⚡ Activations</div>
+              <p style="margin-bottom:1rem;">Can be used as layer classes in Sequential or called as methods on Tensors.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># As layers in Sequential</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.Sequential</span>(<span class="cl">lm.Linear</span>(<span class="nu">128</span>, <span class="nu">64</span>), <span class="cl">lm.ReLU</span>())
+
+<span class="cm"># As Tensor methods</span>
+<span class="nm">x</span>.<span class="fn">relu</span>()
+<span class="nm">x</span>.<span class="fn">sigmoid</span>()
+<span class="nm">x</span>.<span class="fn">tanh</span>()
+<span class="nm">x</span>.<span class="fn">leaky_relu</span>(<span class="nm">alpha</span><span class="op">=</span><span class="nu">0.01</span>)
+<span class="nm">x</span>.<span class="fn">elu</span>(<span class="nm">alpha</span><span class="op">=</span><span class="nu">1.0</span>)
+<span class="nm">x</span>.<span class="fn">gelu</span>()
+<span class="nm">x</span>.<span class="fn">softmax</span>(<span class="nm">axis</span><span class="op">=</span><span class="op">-</span><span class="nu">1</span>)
+
+<span class="cm"># Layer classes</span>
+<span class="cl">lm.ReLU</span>()       <span class="cl">lm.LeakyReLU</span>(<span class="nm">negative_slope</span><span class="op">=</span><span class="nu">0.01</span>)
+<span class="cl">lm.ELU</span>()        <span class="cl">lm.GELU</span>()
+<span class="cl">lm.Sigmoid</span>()    <span class="cl">lm.Tanh</span>()
+<span class="cl">lm.Softmax</span>(<span class="nm">axis</span><span class="op">=</span><span class="op">-</span><span class="nu">1</span>)    <span class="cl">lm.LogSoftmax</span>(<span class="nm">axis</span><span class="op">=</span><span class="op">-</span><span class="nu">1</span>)</pre>
+              </div>
+            </div>
+
+            <!-- SEQUENTIAL -->
+            <div class="api-section" id="sequential">
+              <div class="api-section-title">📋 Sequential</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="kw">from</span> <span class="nm">collections</span> <span class="kw">import</span> <span class="nm">OrderedDict</span>
+
+<span class="cm"># Positional</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.Sequential</span>(
+    <span class="cl">lm.Linear</span>(<span class="nu">784</span>, <span class="nu">256</span>),
+    <span class="cl">lm.ReLU</span>(),
+    <span class="cl">lm.BatchNorm1d</span>(<span class="nu">256</span>),
+    <span class="cl">lm.Dropout</span>(<span class="nu">0.3</span>),
+    <span class="cl">lm.Linear</span>(<span class="nu">256</span>, <span class="nu">10</span>),
+)
+
+<span class="cm"># Named (OrderedDict)</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.Sequential</span>(<span class="cl">OrderedDict</span>([
+    (<span class="st">'fc1'</span>,  <span class="cl">lm.Linear</span>(<span class="nu">784</span>, <span class="nu">256</span>)),
+    (<span class="st">'relu'</span>, <span class="cl">lm.ReLU</span>()),
+    (<span class="st">'fc2'</span>,  <span class="cl">lm.Linear</span>(<span class="nu">256</span>, <span class="nu">10</span>)),
+]))
+
+<span class="fn">print</span>(<span class="nm">model</span>)              <span class="cm"># shows architecture</span>
+<span class="nm">model</span>.<span class="fn">num_parameters</span>()   <span class="cm"># total trainable params</span></pre>
+              </div>
+            </div>
+
+            <!-- LOSS FUNCTIONS -->
+            <div class="api-section" id="loss">
+              <div class="api-section-title">📉 Loss Functions</div>
+              <p style="margin-bottom:1rem;">All loss functions return a scalar Tensor with <code>requires_grad=True</code>.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># Cross Entropy — logits (N,C), targets (N,) int</span>
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.cross_entropy_loss</span>(<span class="nm">logits</span>, <span class="nm">targets</span>)
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.cross_entropy_loss</span>(<span class="nm">logits</span>, <span class="nm">targets</span>, <span class="nm">reduction</span><span class="op">=</span><span class="st">'sum'</span>)
+
+<span class="cm"># Binary Cross Entropy</span>
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.binary_cross_entropy_loss</span>(<span class="nm">output</span>, <span class="nm">targets</span>)
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.binary_cross_entropy_loss</span>(<span class="nm">logits</span>, <span class="nm">targets</span>, <span class="nm">from_logits</span><span class="op">=</span><span class="kw">True</span>)
+
+<span class="cm"># MSE — regression</span>
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.mse_loss</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>)
+
+<span class="cm"># MAE — outlier-robust</span>
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.mae_loss</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>)
+
+<span class="cm"># Huber (smooth L1) — quadratic near 0, linear for outliers</span>
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.huber_loss</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>, <span class="nm">delta</span><span class="op">=</span><span class="nu">1.0</span>)
+
+<span class="cm"># NLL — use after LogSoftmax</span>
+<span class="nm">log_probs</span> <span class="op">=</span> <span class="cl">lm.LogSoftmax</span>()(<span class="nm">logits</span>)
+<span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.nll_loss</span>(<span class="nm">log_probs</span>, <span class="nm">targets</span>)</pre>
+              </div>
+            </div>
+
+            <!-- OPTIMIZERS -->
+            <div class="api-section" id="optimizers">
+              <div class="api-section-title">⚙️ Optimizers</div>
+              <div class="highlight-box" style="margin-bottom:1.5rem;">
+                <strong style="color:var(--accent);">New in v2.1:</strong> All optimizers support <strong style="color:#fff">parameter groups</strong> — pass a list of dicts with per-group lr/weight_decay, same as PyTorch.
+              </div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># Standard interface for all optimizers</span>
+<span class="nm">optimizer</span>.<span class="fn">zero_grad</span>()   <span class="cm"># reset gradients</span>
+<span class="nm">loss</span>.<span class="fn">backward</span>()         <span class="cm"># compute gradients</span>
+<span class="nm">optimizer</span>.<span class="fn">step</span>()        <span class="cm"># update weights</span>
+
+<span class="cm"># SGD with Nesterov momentum</span>
+<span class="nm">opt</span> <span class="op">=</span> <span class="cl">lm.SGD</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">0.01</span>,
+            <span class="nm">momentum</span><span class="op">=</span><span class="nu">0.9</span>, <span class="nm">weight_decay</span><span class="op">=</span><span class="nu">1e-4</span>, <span class="nm">nesterov</span><span class="op">=</span><span class="kw">True</span>)
+
+<span class="cm"># Adam</span>
+<span class="nm">opt</span> <span class="op">=</span> <span class="cl">lm.Adam</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>,
+             <span class="nm">betas</span><span class="op">=</span>(<span class="nu">0.9</span>, <span class="nu">0.999</span>), <span class="nm">amsgrad</span><span class="op">=</span><span class="kw">False</span>)
+
+<span class="cm"># AdamW (decoupled weight decay)</span>
+<span class="nm">opt</span> <span class="op">=</span> <span class="cl">lm.AdamW</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>, <span class="nm">weight_decay</span><span class="op">=</span><span class="nu">0.01</span>)
+
+<span class="cm"># RMSprop</span>
+<span class="nm">opt</span> <span class="op">=</span> <span class="cl">lm.RMSprop</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>, <span class="nm">alpha</span><span class="op">=</span><span class="nu">0.99</span>)
+
+<span class="cm"># AdaGrad</span>
+<span class="nm">opt</span> <span class="op">=</span> <span class="cl">lm.AdaGrad</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">0.01</span>)
+
+<span class="cm"># Parameter groups (v2.1)</span>
+<span class="nm">opt</span> <span class="op">=</span> <span class="cl">lm.Adam</span>([
+    {<span class="st">'params'</span>: <span class="nm">backbone</span>.<span class="fn">parameters</span>(), <span class="st">'lr'</span>: <span class="nu">1e-4</span>},
+    {<span class="st">'params'</span>: <span class="nm">head</span>.<span class="fn">parameters</span>(), <span class="st">'lr'</span>: <span class="nu">1e-3</span>},
+])</pre>
+              </div>
+            </div>
+
+            <!-- SCHEDULERS -->
+            <div class="api-section" id="schedulers">
+              <div class="api-section-title">📅 LR Schedulers</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># StepLR — decay every N epochs</span>
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.StepLR</span>(<span class="nm">optimizer</span>, <span class="nm">step_size</span><span class="op">=</span><span class="nu">10</span>, <span class="nm">gamma</span><span class="op">=</span><span class="nu">0.5</span>)
+
+<span class="cm"># CosineAnnealingLR — smooth decay</span>
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.CosineAnnealingLR</span>(<span class="nm">optimizer</span>, <span class="nm">T_max</span><span class="op">=</span><span class="nu">50</span>, <span class="nm">eta_min</span><span class="op">=</span><span class="nu">1e-6</span>)
+
+<span class="cm"># ReduceLROnPlateau — reduce when stuck</span>
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.ReduceLROnPlateau</span>(
+    <span class="nm">optimizer</span>, <span class="nm">mode</span><span class="op">=</span><span class="st">'min'</span>, <span class="nm">patience</span><span class="op">=</span><span class="nu">5</span>, <span class="nm">factor</span><span class="op">=</span><span class="nu">0.5</span>)
+<span class="nm">scheduler</span>.<span class="fn">step</span>(<span class="nm">val_loss</span>)   <span class="cm"># pass the metric</span>
+
+<span class="cm"># MultiStepLR</span>
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.MultiStepLR</span>(<span class="nm">optimizer</span>, <span class="nm">milestones</span><span class="op">=</span>[<span class="nu">30</span>, <span class="nu">60</span>, <span class="nu">90</span>], <span class="nm">gamma</span><span class="op">=</span><span class="nu">0.1</span>)
+
+<span class="cm"># LinearWarmupLR</span>
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.LinearWarmupLR</span>(<span class="nm">optimizer</span>, <span class="nm">warmup_steps</span><span class="op">=</span><span class="nu">1000</span>, <span class="nm">target_lr</span><span class="op">=</span><span class="nu">1e-3</span>)
+
+<span class="cm"># CyclicLR — call per batch</span>
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.CyclicLR</span>(<span class="nm">optimizer</span>, <span class="nm">base_lr</span><span class="op">=</span><span class="nu">1e-4</span>, <span class="nm">max_lr</span><span class="op">=</span><span class="nu">1e-1</span>,
+                        <span class="nm">step_size</span><span class="op">=</span><span class="nu">2000</span>, <span class="nm">mode</span><span class="op">=</span><span class="st">'triangular'</span>)
+
+<span class="cm"># LR Finder (v2.1) — auto-detect optimal LR</span>
+<span class="nm">finder</span> <span class="op">=</span> <span class="cl">lm.LRFinder</span>(<span class="nm">model</span>, <span class="nm">optimizer</span>, <span class="nm">loss_fn</span>)
+<span class="nm">best_lr</span> <span class="op">=</span> <span class="nm">finder</span>.<span class="fn">find</span>(<span class="nm">train_loader</span>)</pre>
+              </div>
+            </div>
+
+            <!-- DATA UTILITIES -->
+            <div class="api-section" id="data">
+              <div class="api-section-title">📦 Data Utilities</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># TensorDataset</span>
+<span class="nm">ds</span> <span class="op">=</span> <span class="cl">lm.TensorDataset</span>(<span class="nm">X_train</span>, <span class="nm">y_train</span>)
+<span class="nm">X</span>, <span class="nm">y</span> <span class="op">=</span> <span class="nm">ds</span>[<span class="nu">0</span>]             <span class="cm"># first sample</span>
+
+<span class="cm"># Custom Dataset</span>
+<span class="kw">class</span> <span class="cl">MyDataset</span>(<span class="cl">lm.Dataset</span>):
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="nm">self</span>): <span class="kw">return</span> <span class="fn">len</span>(<span class="nm">self</span>.<span class="nm">X</span>)
+    <span class="kw">def</span> <span class="fn">__getitem__</span>(<span class="nm">self</span>, <span class="nm">idx</span>): <span class="kw">return</span> <span class="nm">self</span>.<span class="nm">X</span>[<span class="nm">idx</span>], <span class="nm">self</span>.<span class="nm">y</span>[<span class="nm">idx</span>]
+
+<span class="cm"># DataLoader</span>
+<span class="nm">loader</span> <span class="op">=</span> <span class="cl">lm.DataLoader</span>(<span class="nm">ds</span>, <span class="nm">batch_size</span><span class="op">=</span><span class="nu">64</span>, <span class="nm">shuffle</span><span class="op">=</span><span class="kw">True</span>, <span class="nm">drop_last</span><span class="op">=</span><span class="kw">False</span>)
+<span class="kw">for</span> <span class="nm">X_b</span>, <span class="nm">y_b</span> <span class="kw">in</span> <span class="nm">loader</span>: <span class="kw">pass</span>
+
+<span class="cm"># train_test_split</span>
+<span class="nm">X_tr</span>, <span class="nm">X_val</span>, <span class="nm">y_tr</span>, <span class="nm">y_val</span> <span class="op">=</span> <span class="fn">lm.train_test_split</span>(
+    <span class="nm">X</span>, <span class="nm">y</span>, <span class="nm">test_size</span><span class="op">=</span><span class="nu">0.2</span>, <span class="nm">shuffle</span><span class="op">=</span><span class="kw">True</span>, <span class="nm">seed</span><span class="op">=</span><span class="nu">42</span>
+)
+
+<span class="cm"># Data Transforms (v2.1)</span>
+<span class="nm">transform</span> <span class="op">=</span> <span class="cl">lm.Compose</span>([
+    <span class="cl">lm.Normalize</span>(<span class="nm">mean</span><span class="op">=</span><span class="nu">0.5</span>, <span class="nm">std</span><span class="op">=</span><span class="nu">0.5</span>),
+    <span class="cl">lm.RandomHorizontalFlip</span>(<span class="nm">p</span><span class="op">=</span><span class="nu">0.5</span>),
+    <span class="cl">lm.RandomCrop</span>(<span class="nm">size</span><span class="op">=</span><span class="nu">28</span>),
+    <span class="cl">lm.GaussianNoise</span>(<span class="nm">std</span><span class="op">=</span><span class="nu">0.1</span>),
+])</pre>
+              </div>
+            </div>
+
+            <!-- METRICS -->
+            <div class="api-section" id="metrics">
+              <div class="api-section-title">📊 Metrics</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># All metrics accept Tensors or numpy arrays</span>
+
+<span class="cm"># Classification</span>
+<span class="fn">lm.accuracy</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>)
+<span class="fn">lm.top_k_accuracy</span>(<span class="nm">logits</span>, <span class="nm">targets</span>, <span class="nm">k</span><span class="op">=</span><span class="nu">5</span>)
+<span class="fn">lm.precision</span>(<span class="nm">logits</span>, <span class="nm">targets</span>, <span class="nm">num_classes</span><span class="op">=</span><span class="nu">10</span>)
+<span class="fn">lm.recall</span>(<span class="nm">logits</span>, <span class="nm">targets</span>, <span class="nm">num_classes</span><span class="op">=</span><span class="nu">10</span>)
+<span class="fn">lm.f1_score</span>(<span class="nm">logits</span>, <span class="nm">targets</span>, <span class="nm">num_classes</span><span class="op">=</span><span class="nu">10</span>)
+<span class="fn">lm.confusion_matrix</span>(<span class="nm">logits</span>, <span class="nm">targets</span>)  <span class="cm"># → (C, C) ndarray</span>
+
+<span class="cm"># average='macro' (default), 'micro', or 'none' (per class)</span>
+<span class="nm">per_class_f1</span> <span class="op">=</span> <span class="fn">lm.f1_score</span>(<span class="nm">logits</span>, <span class="nm">targets</span>,
+                           <span class="nm">num_classes</span><span class="op">=</span><span class="nu">10</span>, <span class="nm">average</span><span class="op">=</span><span class="st">'none'</span>)
+
+<span class="cm"># Regression</span>
+<span class="fn">lm.r2_score</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>)
+<span class="fn">lm.mean_squared_error</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>)
+<span class="fn">lm.mean_absolute_error</span>(<span class="nm">predictions</span>, <span class="nm">targets</span>)</pre>
+              </div>
+            </div>
+
+            <!-- TRAINER -->
+            <div class="api-section" id="trainer">
+              <div class="api-section-title">🏋️ Trainer</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">trainer</span> <span class="op">=</span> <span class="cl">lm.Trainer</span>(
+    <span class="nm">model</span><span class="op">=</span><span class="nm">model</span>,
+    <span class="nm">optimizer</span><span class="op">=</span><span class="cl">lm.Adam</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>),
+    <span class="nm">loss_fn</span><span class="op">=</span><span class="nm">lm</span>.<span class="nm">cross_entropy_loss</span>,
+    <span class="nm">callbacks</span><span class="op">=</span>[<span class="cl">lm.EarlyStopping</span>(<span class="nm">patience</span><span class="op">=</span><span class="nu">10</span>)],
+    <span class="nm">clip_grad</span><span class="op">=</span><span class="nu">1.0</span>,            <span class="cm"># gradient norm clipping</span>
+    <span class="nm">grad_accum_steps</span><span class="op">=</span><span class="nu">4</span>,       <span class="cm"># gradient accumulation (v2.1)</span>
+    <span class="nm">verbose</span><span class="op">=</span><span class="nu">1</span>,                 <span class="cm"># print every N epochs</span>
+)
+
+<span class="cm"># Train</span>
+<span class="nm">history</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">fit</span>(<span class="nm">train_loader</span>, <span class="nm">val_loader</span>, <span class="nm">epochs</span><span class="op">=</span><span class="nu">100</span>)
+<span class="cm"># → {'train_loss': [...], 'val_loss': [...], 'val_acc': [...]}</span>
+
+<span class="cm"># Evaluate</span>
+<span class="nm">val_loss</span>, <span class="nm">val_acc</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">evaluate</span>(<span class="nm">val_loader</span>)
+
+<span class="cm"># Inference</span>
+<span class="nm">preds</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">predict</span>(<span class="nm">X_test</span>)        <span class="cm"># class indices</span>
+<span class="nm">probs</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">predict_proba</span>(<span class="nm">X_test</span>)  <span class="cm"># softmax probs (v2.1)</span></pre>
+              </div>
+            </div>
+
+            <!-- CALLBACKS -->
+            <div class="api-section" id="callbacks">
+              <div class="api-section-title">🔔 Callbacks</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># EarlyStopping</span>
+<span class="cl">lm.EarlyStopping</span>(<span class="nm">patience</span><span class="op">=</span><span class="nu">10</span>, <span class="nm">min_delta</span><span class="op">=</span><span class="nu">1e-4</span>,
+                 <span class="nm">mode</span><span class="op">=</span><span class="st">'min'</span>, <span class="nm">verbose</span><span class="op">=</span><span class="kw">True</span>)
+
+<span class="cm"># ModelCheckpoint</span>
+<span class="cl">lm.ModelCheckpoint</span>(<span class="nm">filepath</span><span class="op">=</span><span class="st">'/tmp/best.lmz'</span>,
+                   <span class="nm">monitor</span><span class="op">=</span><span class="st">'val_loss'</span>, <span class="nm">mode</span><span class="op">=</span><span class="st">'min'</span>,
+                   <span class="nm">save_best_only</span><span class="op">=</span><span class="kw">True</span>, <span class="nm">verbose</span><span class="op">=</span><span class="kw">True</span>)
+
+<span class="cm"># LRSchedulerCallback</span>
+<span class="nm">sched</span> <span class="op">=</span> <span class="cl">lm.ReduceLROnPlateau</span>(<span class="nm">optimizer</span>, <span class="nm">patience</span><span class="op">=</span><span class="nu">5</span>)
+<span class="cl">lm.LRSchedulerCallback</span>(<span class="nm">sched</span>, <span class="nm">monitor</span><span class="op">=</span><span class="st">'val_loss'</span>)
+
+<span class="cm"># History</span>
+<span class="nm">history_cb</span> <span class="op">=</span> <span class="cl">lm.History</span>()
+<span class="cm"># After training:</span>
+<span class="nm">history_cb</span>.<span class="nm">history</span>[<span class="st">'train_loss'</span>]</pre>
+              </div>
+            </div>
+
+            <!-- MODELS -->
+            <div class="api-section" id="models">
+              <div class="api-section-title">🤖 Pre-built Models</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># MicroMLP — tabular/flat data</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.MicroMLP</span>(
+    <span class="nm">input_size</span><span class="op">=</span><span class="nu">784</span>,
+    <span class="nm">hidden_sizes</span><span class="op">=</span>[<span class="nu">256</span>, <span class="nu">128</span>],
+    <span class="nm">output_size</span><span class="op">=</span><span class="nu">10</span>,
+    <span class="nm">dropout</span><span class="op">=</span><span class="nu">0.3</span>,
+)
+
+<span class="cm"># MicroCNN — small images (32×32)</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.MicroCNN</span>(
+    <span class="nm">in_channels</span><span class="op">=</span><span class="nu">3</span>,     <span class="cm"># 3=RGB, 1=grayscale</span>
+    <span class="nm">num_classes</span><span class="op">=</span><span class="nu">10</span>,
+    <span class="nm">input_size</span><span class="op">=</span><span class="nu">32</span>,
+    <span class="nm">dropout</span><span class="op">=</span><span class="nu">0.2</span>,
+)
+
+<span class="cm"># TinyResNet — residual connections</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.TinyResNet</span>(
+    <span class="nm">in_channels</span><span class="op">=</span><span class="nu">3</span>,
+    <span class="nm">num_classes</span><span class="op">=</span><span class="nu">10</span>,
+    <span class="nm">input_size</span><span class="op">=</span><span class="nu">32</span>,
+    <span class="nm">base_filters</span><span class="op">=</span><span class="nu">16</span>,  <span class="cm"># use 8 for very constrained devices</span>
+)</pre>
+              </div>
+            </div>
+
+            <!-- SYSTEM MONITOR -->
+            <div class="api-section" id="monitor">
+              <div class="api-section-title">🖥️ System Monitor</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># Configure memory limit</span>
+<span class="fn">lm.configure_memory</span>(<span class="nm">max_mb</span><span class="op">=</span><span class="nu">256</span>)
+
+<span class="cm"># System health monitor</span>
+<span class="nm">monitor</span> <span class="op">=</span> <span class="cl">lm.SystemMonitor</span>()
+<span class="nm">monitor</span>.<span class="fn">print_status</span>()       <span class="cm"># print CPU/RAM/temp</span>
+<span class="nm">score</span> <span class="op">=</span> <span class="nm">monitor</span>.<span class="fn">health_score</span>()   <span class="cm"># 0-100</span>
+<span class="nm">stats</span> <span class="op">=</span> <span class="nm">monitor</span>.<span class="fn">get_stats</span>()      <span class="cm"># dict of all stats</span>
+
+<span class="cm"># Trace memory for a code block</span>
+<span class="kw">with</span> <span class="fn">lm.memory_trace</span>(<span class="st">"Forward Pass"</span>):
+    <span class="nm">out</span> <span class="op">=</span> <span class="nm">model</span>(<span class="nm">X</span>)
+
+<span class="cm"># Memory manager</span>
+<span class="nm">lm</span>.<span class="nm">memory_manager</span>.<span class="fn">optimize_for_inference</span>()
+<span class="nm">lm</span>.<span class="nm">memory_manager</span>.<span class="fn">free_unused</span>()
+<span class="nm">info</span> <span class="op">=</span> <span class="nm">lm</span>.<span class="nm">memory_manager</span>.<span class="fn">get_memory_info</span>()
+
+<span class="cm"># Model Profiler (v2.1)</span>
+<span class="nm">profiler</span> <span class="op">=</span> <span class="cl">lm.ModelProfiler</span>(<span class="nm">model</span>)
+<span class="nm">profiler</span>.<span class="fn">profile</span>(<span class="nm">input_shape</span><span class="op">=</span>(<span class="nu">1</span>, <span class="nu">784</span>))  <span class="cm"># params, FLOPs, memory</span></pre>
+              </div>
+            </div>
+
+            <!-- WEIGHT INIT -->
+            <div class="api-section" id="init">
+              <div class="api-section-title">🎯 Weight Initialization <span class="badge badge-new" style="font-size:0.75rem;vertical-align:middle;">v2.1</span></div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="kw">import</span> <span class="nm">lowmind.init</span> <span class="kw">as</span> <span class="nm">init</span>
+
+<span class="cm"># Apply to individual parameter</span>
+<span class="fn">init.xavier_uniform_</span>(<span class="nm">layer</span>.<span class="nm">weight</span>)
+<span class="fn">init.xavier_normal_</span>(<span class="nm">layer</span>.<span class="nm">weight</span>)
+<span class="fn">init.kaiming_uniform_</span>(<span class="nm">layer</span>.<span class="nm">weight</span>, <span class="nm">mode</span><span class="op">=</span><span class="st">'fan_in'</span>)
+<span class="fn">init.kaiming_normal_</span>(<span class="nm">layer</span>.<span class="nm">weight</span>)
+<span class="fn">init.orthogonal_</span>(<span class="nm">layer</span>.<span class="nm">weight</span>)
+<span class="fn">init.normal_</span>(<span class="nm">layer</span>.<span class="nm">weight</span>, <span class="nm">mean</span><span class="op">=</span><span class="nu">0</span>, <span class="nm">std</span><span class="op">=</span><span class="nu">0.01</span>)
+<span class="fn">init.zeros_</span>(<span class="nm">layer</span>.<span class="nm">bias</span>)
+
+<span class="cm"># Apply to whole module recursively</span>
+<span class="fn">init.init_module</span>(<span class="nm">model</span>, <span class="nm">method</span><span class="op">=</span><span class="st">'xavier_uniform'</span>)</pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-brand" style="display:inline-flex;margin-bottom:1rem;"><div class="nav-logo">LM</div>LowMind</a><p>Ultra-lightweight deep learning for Raspberry Pi and resource-constrained environments.</p></div>
+        <div class="footer-col"><h5>Framework</h5><ul><li><a href="features.html">Features</a></li><li><a href="api.html">API Reference</a></li><li><a href="examples.html">Examples</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+        <div class="footer-col"><h5>Getting Started</h5><ul><li><a href="installation.html">Installation</a></li><li><a href="installation.html#quickstart">Quick Start</a></li><li><a href="installation.html#raspberry-pi">Raspberry Pi</a></li></ul></div>
+        <div class="footer-col"><h5>Resources</h5><ul><li><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a></li><li><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 LowMind by Dhaval Vedra. MIT License.</p><div class="footer-links"><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a><a href="changelog.html">v2.1.0</a></div></div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

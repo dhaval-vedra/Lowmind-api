@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog — LowMind Framework</title>
+  <meta name="description" content="LowMind version history — what's new, changed, and fixed across all releases." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">LM</div>
+      LowMind
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="api.html">API Reference</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="changelog.html" class="active">Changelog <span class="nav-badge">v2.1</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="installation.html" class="btn-nav">⚡ Get Started</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="features.html">⚡ Features</a>
+    <a href="api.html">📚 API Reference</a>
+    <a href="examples.html">💡 Examples</a>
+    <a href="installation.html">📦 Installation</a>
+    <a href="changelog.html" class="active">📋 Changelog</a>
+  </div>
+
+  <main>
+    <div class="page-banner">
+      <div class="container">
+        <div class="page-banner-label">📋 Release History</div>
+        <h1>Changelog</h1>
+        <p>All notable changes to LowMind across every release. Format based on Keep a Changelog.</p>
+        <div style="display:flex;gap:0.75rem;margin-top:1.5rem;flex-wrap:wrap;">
+          <span class="badge badge-new">Added</span>
+          <span class="badge badge-updated">Changed</span>
+          <span class="badge badge-fixed">Fixed</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container-sm">
+        <div class="timeline">
+
+          <!-- v2.1.0 -->
+          <div class="timeline-item" data-animate>
+            <div class="timeline-dot">2.1</div>
+            <div class="timeline-content">
+              <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.25rem;">
+                <div class="timeline-version">v2.1.0</div>
+                <span class="badge badge-new">Latest</span>
+              </div>
+              <div class="timeline-date">📅 May 27, 2026</div>
+
+              <!-- Added -->
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                  <span class="badge badge-new">Added</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">no_grad / enable_grad context managers</div>
+                    <p style="font-size:0.85rem;">Disable autograd during inference. Works as context manager and decorator. Computed tensors inside no_grad skip graph building entirely.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">LSTM & GRU layers</div>
+                    <p style="font-size:0.85rem;">Single-cell + multi-step, multi-layer, dropout support. Includes a full test suite of 13 RNN/no_grad tests.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">Weight Initialization module</div>
+                    <p style="font-size:0.85rem;"><code>xavier_uniform_</code>, <code>xavier_normal_</code>, <code>kaiming_uniform_</code>, <code>kaiming_normal_</code>, <code>orthogonal_</code>, <code>normal_</code>, <code>uniform_</code>, <code>constant_</code>, <code>zeros_</code>, <code>ones_</code>, <code>eye_</code>, <code>init_module()</code></p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">Parameter groups in all optimizers</div>
+                    <p style="font-size:0.85rem;">SGD, Adam, AdamW, RMSprop, AdaGrad — all support list-of-dicts API for different LR/weight-decay per layer.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">Gradient accumulation in Trainer</div>
+                    <p style="font-size:0.85rem;"><code>grad_accum_steps</code> argument — simulate large batches on Pi with limited RAM.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">ModelProfiler</div>
+                    <p style="font-size:0.85rem;">Count parameters, estimate FLOPs/memory, measure throughput. Know the cost of your model before deploying to Pi.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">Data Transforms</div>
+                    <p style="font-size:0.85rem;"><code>Compose</code>, <code>Normalize</code>, <code>RandomHorizontalFlip</code>, <code>RandomVerticalFlip</code>, <code>RandomCrop</code>, <code>CenterCrop</code>, <code>GaussianNoise</code>, <code>Cutout</code>, <code>ToTensor</code></p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">LR Finder</div>
+                    <p style="font-size:0.85rem;"><code>LRFinder</code> — auto-detect optimal learning rate using range test. Saves manual hyperparameter search time on Pi.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">Optimizer state_dict / load_state_dict</div>
+                    <p style="font-size:0.85rem;">Save and restore optimizer state alongside model weights for fully resumable training.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">Trainer.predict_proba</div>
+                    <p style="font-size:0.85rem;">Return softmax probabilities from the high-level Trainer (not just class indices).</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">3 new examples (11, 12, 13)</div>
+                    <p style="font-size:0.85rem;">LSTM sequence, weight init comparison, production inference pipeline.</p>
+                  </div>
+                  <div class="card" style="padding:1rem 1.25rem;">
+                    <div style="font-weight:700;color:#fff;margin-bottom:0.25rem;font-size:0.9rem;">New test suites</div>
+                    <p style="font-size:0.85rem;">Integration tests (10), RNN tests (13), weight init tests (14). <code>pyproject.toml</code> PEP 621 packaging config added.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Changed -->
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                  <span class="badge badge-updated">Changed</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                  <div style="padding:0.875rem 1.25rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.875rem;">All optimizers now support <strong style="color:#fff;">parameter groups</strong> (list of dicts API, same as PyTorch)</p>
+                  </div>
+                  <div style="padding:0.875rem 1.25rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.875rem;"><code>Trainer</code> now uses <code>no_grad</code> during validation for memory efficiency</p>
+                  </div>
+                  <div style="padding:0.875rem 1.25rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.875rem;"><code>no_grad</code> is integrated into <code>Tensor.__init__</code> — computed tensors inside <code>no_grad</code> skip graph building entirely</p>
+                  </div>
+                  <div style="padding:0.875rem 1.25rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.875rem;"><code>clip_grad_norm</code> moved to top-level <code>lm.clip_grad_norm()</code></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fixed -->
+              <div>
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                  <span class="badge badge-fixed">Fixed</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                  <div style="padding:0.875rem 1.25rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.875rem;"><code>set_lr</code> / <code>get_lr</code> added to all optimizers (needed by <code>LRFinder</code> and <code>ReduceLROnPlateau</code>)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- v2.0.0 -->
+          <div class="timeline-item" data-animate>
+            <div class="timeline-dot">2.0</div>
+            <div class="timeline-content">
+              <div class="timeline-version">v2.0.0</div>
+              <div class="timeline-date">📅 May 26, 2026</div>
+
+              <div style="margin-bottom:1.5rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                  <span class="badge badge-new">Added</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);">Full professional package structure — <code>core/</code>, <code>nn/</code>, <code>optim/</code>, <code>data/</code>, <code>utils/</code>, <code>models/</code></p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">Adam, AdamW, RMSprop, AdaGrad</strong> optimizers added</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">7 LR Schedulers:</strong> StepLR, MultiStepLR, ExponentialLR, CosineAnnealingLR, ReduceLROnPlateau, LinearWarmupLR, CyclicLR</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">BatchNorm1d / BatchNorm2d</strong> with running stats and eval mode</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">MaxPool2d / AvgPool2d</strong> with stride and kernel</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">Conv2d</strong> im2col-based backward pass</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">Flatten, Dropout, Embedding</strong> layers</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">6 Loss functions:</strong> CrossEntropy, BCE, MSE, MAE, Huber, NLL</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">DataLoader</strong> with shuffling, batching, drop_last; TensorDataset, train_test_split</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">8 Metrics:</strong> accuracy, top-k accuracy, F1, precision, recall, confusion matrix, R², MSE/MAE</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">High-level Trainer</strong> with EarlyStopping, ModelCheckpoint, LRSchedulerCallback, History callbacks</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">SystemMonitor</strong> and <code>memory_trace</code> for Pi resource monitoring</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);"><strong style="color:#fff">MicroMLP, MicroCNN, TinyResNet</strong> pre-built models</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;color:var(--text);">Model <code>save()</code> / <code>load()</code> with gzip compression. 10 example scripts. <strong style="color:#fff">88 passing unit tests.</strong></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fixed in v2.0 -->
+              <div>
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+                  <span class="badge badge-fixed">Fixed (from original lowmind.py)</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                  <div style="padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;"><strong style="color:#fbbf24;">Conv2d</strong> had no backward pass → full im2col gradient implemented</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;"><strong style="color:#fbbf24;">mean(axis=(2,3))</strong> crashed with tuple axis → full tuple-axis support added</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;"><strong style="color:#fbbf24;">Tensor.__hash__</strong> missing → set/dict usage failed → <code>__hash__ = object.__hash__</code></p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;"><strong style="color:#fbbf24;">Matmul backward</strong> 1-D vector case → was scalar instead of outer product → <code>np.outer</code> fix</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;"><strong style="color:#fbbf24;">zero_grad()</strong> used <code>None</code> assignment instead of <code>.fill(0)</code> → fixed</p>
+                  </div>
+                  <div style="padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.1);border-radius:var(--radius-sm);">
+                    <p style="font-size:0.85rem;"><strong style="color:#fbbf24;">Memory manager</strong> name collision for same-named layers → removed from tracking</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- v1.0.0 -->
+          <div class="timeline-item" data-animate>
+            <div class="timeline-dot" style="border-color:var(--text3);color:var(--text3);">1.0</div>
+            <div class="timeline-content">
+              <div class="timeline-version" style="color:var(--text2);">v1.0.0</div>
+              <div class="timeline-date">📅 Original Release</div>
+              <div style="padding:1.25rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);">
+                <p style="margin:0;font-size:0.9rem;">Single-file <code>lowmind.py</code> by Dhaval Vedra. Basic Tensor, Linear, Conv2d, ReLU, MSE loss, SGD optimizer. The foundation that LowMind 2.x was built upon.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-brand" style="display:inline-flex;margin-bottom:1rem;"><div class="nav-logo">LM</div>LowMind</a><p>Ultra-lightweight deep learning for Raspberry Pi and resource-constrained environments.</p></div>
+        <div class="footer-col"><h5>Framework</h5><ul><li><a href="features.html">Features</a></li><li><a href="api.html">API Reference</a></li><li><a href="examples.html">Examples</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+        <div class="footer-col"><h5>Getting Started</h5><ul><li><a href="installation.html">Installation</a></li><li><a href="installation.html#quickstart">Quick Start</a></li></ul></div>
+        <div class="footer-col"><h5>Resources</h5><ul><li><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a></li><li><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 LowMind by Dhaval Vedra. MIT License.</p><div class="footer-links"><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a><a href="changelog.html">v2.1.0</a></div></div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

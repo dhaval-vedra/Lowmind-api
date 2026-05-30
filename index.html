@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LowMind — Ultra-Lightweight Deep Learning Framework</title>
+  <meta name="description" content="Pure-NumPy deep learning framework for Raspberry Pi and resource-constrained devices. PyTorch-like API with only NumPy + psutil." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">LM</div>
+      LowMind
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="api.html">API Reference</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="changelog.html">Changelog <span class="nav-badge">v2.1</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="installation.html" class="btn-nav">⚡ Get Started</a>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <a href="index.html" class="active">🏠 Home</a>
+    <a href="features.html">⚡ Features</a>
+    <a href="api.html">📚 API Reference</a>
+    <a href="examples.html">💡 Examples</a>
+    <a href="installation.html">📦 Installation</a>
+    <a href="changelog.html">📋 Changelog</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="hero-eyebrow animate-in">
+              <span class="dot"></span>
+              v2.1.0 Released — LSTM, GRU & More
+            </div>
+            <h1 class="hero-title animate-in" style="animation-delay:0.1s">
+              Deep Learning for<br>
+              <span class="gradient-text">
+                <span class="typewriter typewriter-text" data-texts="Raspberry Pi|Embedded Systems|Low-End Devices|Edge Computing|Resource-Constrained Envs"></span>
+              </span>
+            </h1>
+            <p class="hero-desc animate-in" style="animation-delay:0.2s">
+              LowMind is a pure-NumPy deep learning framework built from scratch. Get a PyTorch-like API without the multi-GB installation — just <strong style="color:#fff">NumPy</strong> and <strong style="color:#fff">psutil</strong>.
+            </p>
+            <div class="hero-cta animate-in" style="animation-delay:0.3s">
+              <a href="installation.html" class="btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Install LowMind
+              </a>
+              <a href="api.html" class="btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                View API Docs
+              </a>
+            </div>
+            <div class="hero-stats animate-in" style="animation-delay:0.4s">
+              <div class="stat-item">
+                <div class="stat-num" data-target="2" data-suffix=" deps">0</div>
+                <div class="stat-label">Dependencies</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num" data-target="88" data-suffix="+">0</div>
+                <div class="stat-label">Unit Tests</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num" data-target="13" data-suffix="">0</div>
+                <div class="stat-label">Examples</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num" data-target="2.1" data-suffix="">0</div>
+                <div class="stat-label">Version</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Code Window -->
+          <div class="hero-visual animate-right" style="animation-delay:0.2s">
+            <div class="code-window">
+              <div class="code-window-bar">
+                <div class="window-dots">
+                  <span class="dot-red"></span>
+                  <span class="dot-yellow"></span>
+                  <span class="dot-green"></span>
+                </div>
+                <span class="window-title">quickstart.py</span>
+              </div>
+              <div class="code-body">
+<span class="kw">import</span> <span class="nm">lowmind</span> <span class="kw">as</span> <span class="nm">lm</span>
+<span class="kw">import</span> <span class="nm">numpy</span> <span class="kw">as</span> <span class="nm">np</span>
+
+<span class="cm"># Build a neural network</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.Sequential</span>(
+    <span class="cl">lm.Linear</span>(<span class="nu">784</span>, <span class="nu">128</span>),
+    <span class="cl">lm.ReLU</span>(),
+    <span class="cl">lm.Dropout</span>(<span class="nu">0.3</span>),
+    <span class="cl">lm.Linear</span>(<span class="nu">128</span>, <span class="nu">10</span>),
+)
+
+<span class="cm"># Create optimizer</span>
+<span class="nm">optimizer</span> <span class="op">=</span> <span class="cl">lm.Adam</span>(
+    <span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>
+)
+
+<span class="cm"># Train</span>
+<span class="kw">for</span> <span class="nm">epoch</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">20</span>):
+    <span class="nm">optimizer</span>.<span class="fn">zero_grad</span>()
+    <span class="nm">out</span> <span class="op">=</span> <span class="nm">model</span>(<span class="nm">X_batch</span>)
+    <span class="nm">loss</span> <span class="op">=</span> <span class="fn">lm.cross_entropy_loss</span>(
+        <span class="nm">out</span>, <span class="nm">y_batch</span>
+    )
+    <span class="nm">loss</span>.<span class="fn">backward</span>()
+    <span class="nm">optimizer</span>.<span class="fn">step</span>()
+
+<span class="fn">print</span>(<span class="st">f"Loss: {loss.item():.4f}"</span>)
+              </div>
+            </div>
+
+            <!-- Floating badges -->
+            <div style="position:absolute;top:-16px;right:-16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:0.5rem 1rem;border-radius:8px;font-size:0.78rem;font-weight:700;box-shadow:0 4px 20px rgba(0,212,255,0.4);">
+              🍓 Raspberry Pi Ready
+            </div>
+            <div style="position:absolute;bottom:-16px;left:-16px;background:var(--card);border:1px solid var(--border);color:var(--accent3);padding:0.5rem 1rem;border-radius:8px;font-size:0.78rem;font-weight:700;">
+              ✓ Only 2 Dependencies
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK INSTALL BANNER -->
+    <section style="padding:0 0 3rem;">
+      <div class="container">
+        <div style="background:var(--code-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;" data-animate>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="color:var(--text3);font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Quick Install</div>
+            <code style="color:var(--accent);font-size:1rem;letter-spacing:0.5px;">pip install lowmind</code>
+          </div>
+          <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--text3);">
+              <span style="color:var(--accent3)">✓</span> numpy&gt;=1.19.0
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--text3);">
+              <span style="color:var(--accent3)">✓</span> psutil&gt;=5.8.0
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--text3);">
+              <span style="color:var(--accent3)">✓</span> Python 3.7+
+            </div>
+            <a href="installation.html" style="color:var(--accent);font-size:0.85rem;font-weight:600;">Full Install Guide →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IS LOWMIND -->
+    <section class="section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:4rem;" data-animate>
+          <div class="section-label">🧠 About</div>
+          <h2 class="section-title">What is <span>LowMind</span>?</h2>
+          <p class="section-desc" style="margin:0 auto;">A full-featured deep learning framework that runs anywhere — no GPU required, no 10GB installs. Built for the real world of embedded AI.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card" data-animate>
+            <div class="card-icon cyan">🔋</div>
+            <h4>Ultra Low Footprint</h4>
+            <p>Only numpy and psutil as dependencies. Runs on Raspberry Pi, Jetson Nano, and any Linux/macOS/Windows machine with minimal RAM.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon purple">🔄</div>
+            <h4>PyTorch-Like API</h4>
+            <p>Familiar <code>Module</code>, <code>Sequential</code>, autograd, and training loop patterns. Switch from PyTorch with minimal code changes.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon green">⚡</div>
+            <h4>Production Ready</h4>
+            <p>88+ passing unit tests, full package structure, model save/load with gzip compression, system monitoring, and comprehensive error handling.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon amber">🧮</div>
+            <h4>Full Autograd Engine</h4>
+            <p>Reverse-mode automatic differentiation with full broadcasting, tuple-axis support, and gradient clipping built-in.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon blue">📊</div>
+            <h4>Complete Toolkit</h4>
+            <p>Layers, activations, losses, optimizers, schedulers, metrics, data utilities, trainer, callbacks — everything in one package.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon teal">🍓</div>
+            <h4>Pi-First Design</h4>
+            <p>Memory manager with LRU eviction, system monitor for CPU/RAM/temperature, memory tracing, and inference optimization for constrained devices.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="stats-section" data-animate>
+          <div style="text-align:center;margin-bottom:2.5rem;">
+            <h3 style="color:#fff;margin-bottom:0.5rem;">Framework at a Glance</h3>
+            <p style="font-size:0.9rem;">Everything you need to build, train, and deploy deep learning models</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-big"><span data-target="5" data-suffix="">0</span>+</div>
+              <div class="stat-desc">Optimizers & Schedulers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-big"><span data-target="8" data-suffix="">0</span></div>
+              <div class="stat-desc">Layer & Activation Types</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-big"><span data-target="6" data-suffix="">0</span></div>
+              <div class="stat-desc">Loss Functions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-big"><span data-target="9" data-suffix="">0</span>+</div>
+              <div class="stat-desc">Passing Unit Tests</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE OVERVIEW TABLE -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:3rem;" data-animate>
+          <div class="section-label">📋 Full Feature List</div>
+          <h2 class="section-title">Everything <span>Included</span></h2>
+        </div>
+        <div class="table-wrap" data-animate>
+          <table class="feature-table">
+            <thead>
+              <tr><th>Category</th><th>What's Included</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Autograd</td><td>Reverse-mode automatic differentiation, full broadcasting, tuple-axis support</td></tr>
+              <tr><td>Layers</td><td>Linear, Conv2d, BatchNorm1d/2d, MaxPool2d, AvgPool2d, Flatten, Dropout, Embedding, LSTM, GRU</td></tr>
+              <tr><td>Activations</td><td>ReLU, LeakyReLU, ELU, GELU, Sigmoid, Tanh, Softmax, LogSoftmax</td></tr>
+              <tr><td>Loss Functions</td><td>CrossEntropy, BCE, MSE, MAE, Huber, NLL</td></tr>
+              <tr><td>Optimizers</td><td>SGD (+ Nesterov), Adam, AdamW, RMSprop, AdaGrad — all support parameter groups</td></tr>
+              <tr><td>LR Schedulers</td><td>StepLR, MultiStepLR, ExponentialLR, CosineAnnealingLR, ReduceLROnPlateau, CyclicLR, LinearWarmup</td></tr>
+              <tr><td>Data</td><td>Dataset, TensorDataset, DataLoader, train_test_split, Data Transforms (Compose, Normalize, Flip, Crop…)</td></tr>
+              <tr><td>Metrics</td><td>accuracy, top-k accuracy, precision, recall, F1, confusion matrix, R², MSE, MAE</td></tr>
+              <tr><td>Trainer</td><td>High-level training loop with callbacks, gradient clipping, gradient accumulation, validation</td></tr>
+              <tr><td>Callbacks</td><td>EarlyStopping, ModelCheckpoint, LRSchedulerCallback, History</td></tr>
+              <tr><td>Models</td><td>MicroMLP, MicroCNN, TinyResNet</td></tr>
+              <tr><td>Weight Init</td><td>xavier_uniform/normal, kaiming_uniform/normal, orthogonal, normal, uniform, constant, zeros, ones, eye</td></tr>
+              <tr><td>Monitoring</td><td>SystemMonitor, memory_trace, health_score, ModelProfiler (FLOPs, throughput)</td></tr>
+              <tr><td>Model I/O</td><td>save/load (gzip or plain pickle), state_dict, load_state_dict, optimizer state save/restore</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div style="background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(124,58,237,0.08));border:1px solid rgba(0,212,255,0.2);border-radius:var(--radius);padding:4rem 2rem;text-align:center;" data-animate>
+          <div class="section-label" style="margin:0 auto 1.5rem;">🚀 Get Started</div>
+          <h2 style="color:#fff;margin-bottom:1rem;">Ready to Build?</h2>
+          <p style="max-width:500px;margin:0 auto 2.5rem;">Install LowMind in seconds and start building deep learning models that run on any device.</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="installation.html" class="btn-primary">📦 Install Now</a>
+            <a href="examples.html" class="btn-secondary">💡 See Examples</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-brand" style="display:inline-flex;margin-bottom:1rem;">
+            <div class="nav-logo">LM</div>
+            LowMind
+          </a>
+          <p>Ultra-lightweight deep learning for Raspberry Pi and resource-constrained environments. Pure NumPy, zero bloat.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Framework</h5>
+          <ul>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="api.html">API Reference</a></li>
+            <li><a href="examples.html">Examples</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Getting Started</h5>
+          <ul>
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="installation.html#quickstart">Quick Start</a></li>
+            <li><a href="installation.html#raspberry-pi">Raspberry Pi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a></li>
+            <li><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 LowMind by Dhaval Vedra. MIT License.</p>
+        <div class="footer-links">
+          <a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a>
+          <a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a>
+          <a href="changelog.html">v2.1.0</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation — LowMind Framework</title>
+  <meta name="description" content="Install LowMind on any platform — PyPI, from source, or on Raspberry Pi. Quick start guide included." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">LM</div>
+      LowMind
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="api.html">API Reference</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="installation.html" class="active">Install</a></li>
+      <li><a href="changelog.html">Changelog <span class="nav-badge">v2.1</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="installation.html" class="btn-nav">⚡ Get Started</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="features.html">⚡ Features</a>
+    <a href="api.html">📚 API Reference</a>
+    <a href="examples.html">💡 Examples</a>
+    <a href="installation.html" class="active">📦 Installation</a>
+    <a href="changelog.html">📋 Changelog</a>
+  </div>
+
+  <main>
+    <div class="page-banner">
+      <div class="container">
+        <div class="page-banner-label">📦 Installation Guide</div>
+        <h1>Get LowMind <span style="color:var(--accent)">Running Fast</span></h1>
+        <p>Install in seconds with pip, from source, or on your Raspberry Pi. Just two dependencies required.</p>
+      </div>
+    </div>
+
+    <!-- REQUIREMENTS -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-3" style="margin-bottom:4rem">
+          <div class="card" data-animate>
+            <div class="card-icon green" style="font-size:2rem;">🐍</div>
+            <h4>Python 3.7+</h4>
+            <p>Any modern Python version works. Tested on 3.7, 3.8, 3.9, 3.10, 3.11, 3.12.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon cyan" style="font-size:2rem;">📦</div>
+            <h4>numpy ≥ 1.19.0</h4>
+            <p>The only computation dependency. Available on every platform including Raspberry Pi OS.</p>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon amber" style="font-size:2rem;">🖥️</div>
+            <h4>psutil ≥ 5.8.0</h4>
+            <p>Used for system monitoring (CPU, RAM, temperature). Optional for basic training tasks.</p>
+          </div>
+        </div>
+
+        <!-- INSTALL METHODS -->
+        <div class="section-label" data-animate>📥 Install Methods</div>
+        <h2 class="section-title" data-animate>Choose Your <span>Platform</span></h2>
+
+        <div class="grid-3" style="margin-bottom:3rem">
+          <!-- PyPI -->
+          <div data-animate>
+            <div class="tab-group" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+              <div class="install-tabs">
+                <button class="tab-btn active" data-tab="pypi-pip">🐍 pip</button>
+              </div>
+              <div class="tab-content active" data-tab="pypi-pip" style="background:var(--code-bg)">
+                <div style="margin-bottom:0.5rem;color:var(--text3);font-size:0.75rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;">Recommended</div>
+                <pre style="font-family:var(--mono);font-size:0.9rem;color:var(--accent);">pip install lowmind</pre>
+              </div>
+            </div>
+            <div style="margin-top:0.75rem;padding:0.75rem 1rem;background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-sm);">
+              <span style="color:var(--accent3);font-weight:600;font-size:0.85rem;">✓ Recommended</span>
+              <p style="font-size:0.8rem;margin-top:0.25rem;">Installs from PyPI. Gets the latest stable release automatically.</p>
+            </div>
+          </div>
+
+          <!-- Source -->
+          <div data-animate>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+              <div style="background:var(--bg3);padding:0.875rem 1rem;border-bottom:1px solid var(--border);font-size:0.8rem;color:var(--text3);font-family:var(--mono);">From Source</div>
+              <pre style="padding:1.25rem;font-family:var(--mono);font-size:0.8rem;line-height:1.8;background:var(--code-bg);color:#e2e8f0;"><span class="cm"># Clone the repository</span>
+<span style="color:var(--accent3);">git clone</span> https://github.com/
+    dhaval-vedra/lowmind.git
+<span style="color:var(--accent3);">cd</span> lowmind
+
+<span class="cm"># Install in editable mode</span>
+<span style="color:var(--accent3);">pip install</span> -e .</pre>
+            </div>
+            <div style="margin-top:0.75rem;padding:0.75rem 1rem;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.2);border-radius:var(--radius-sm);">
+              <span style="color:#60a5fa;font-weight:600;font-size:0.85rem;">ℹ️ Development Mode</span>
+              <p style="font-size:0.8rem;margin-top:0.25rem;">Editable install. Changes to source take effect immediately.</p>
+            </div>
+          </div>
+
+          <!-- Raspberry Pi -->
+          <div data-animate id="raspberry-pi">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+              <div style="background:var(--bg3);padding:0.875rem 1rem;border-bottom:1px solid var(--border);font-size:0.8rem;color:var(--text3);font-family:var(--mono);">🍓 Raspberry Pi OS</div>
+              <pre style="padding:1.25rem;font-family:var(--mono);font-size:0.8rem;line-height:1.8;background:var(--code-bg);color:#e2e8f0;"><span class="cm"># System packages first</span>
+<span style="color:var(--accent3);">sudo apt update</span>
+<span style="color:var(--accent3);">sudo apt install</span> \
+  python3-pip \
+  python3-numpy \
+  python3-psutil
+
+<span class="cm"># Then install LowMind</span>
+<span style="color:var(--accent3);">pip3 install</span> lowmind</pre>
+            </div>
+            <div style="margin-top:0.75rem;padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);">
+              <span style="color:var(--accent4);font-weight:600;font-size:0.85rem;">🍓 Pi Tip</span>
+              <p style="font-size:0.8rem;margin-top:0.25rem;">Using system numpy avoids compilation time on ARM.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verify install -->
+        <div data-animate>
+          <h3 style="color:#fff;margin-bottom:1.25rem;">Verify Installation</h3>
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">python</span>
+              <button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button>
+            </div>
+            <pre><span class="kw">import</span> <span class="nm">lowmind</span> <span class="kw">as</span> <span class="nm">lm</span>
+<span class="fn">print</span>(<span class="nm">lm</span>.__version__)   <span class="cm"># → '2.1.0'</span>
+
+<span class="cm"># Quick smoke test</span>
+<span class="nm">t</span> <span class="op">=</span> <span class="cl">lm.Tensor</span>([<span class="nu">1.0</span>, <span class="nu">2.0</span>, <span class="nu">3.0</span>], <span class="nm">requires_grad</span><span class="op">=</span><span class="kw">True</span>)
+<span class="nm">loss</span> <span class="op">=</span> (<span class="nm">t</span> <span class="op">**</span> <span class="nu">2</span>).<span class="fn">sum</span>()
+<span class="nm">loss</span>.<span class="fn">backward</span>()
+<span class="fn">print</span>(<span class="nm">t</span>.<span class="nm">grad</span>)   <span class="cm"># → [2., 4., 6.]</span>
+<span class="fn">print</span>(<span class="st">"✓ LowMind installed correctly!"</span>)</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section class="section" style="padding-top:0" id="quickstart">
+      <div class="container">
+        <div class="section-label" data-animate>🚀 Quick Start</div>
+        <h2 class="section-title" data-animate>First <span>Model</span> in Minutes</h2>
+
+        <div class="install-steps" data-animate>
+          <div class="install-step">
+            <div class="install-step-content">
+              <h4>Import LowMind</h4>
+              <p>Import the framework. The convention is <code>import lowmind as lm</code>.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="kw">import</span> <span class="nm">lowmind</span> <span class="kw">as</span> <span class="nm">lm</span>
+<span class="kw">import</span> <span class="nm">numpy</span> <span class="kw">as</span> <span class="nm">np</span></pre>
+              </div>
+            </div>
+          </div>
+          <div class="install-step">
+            <div class="install-step-content">
+              <h4>Define Your Model</h4>
+              <p>Use <code>Sequential</code> to stack layers, or subclass <code>Module</code> for custom architectures.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.Sequential</span>(
+    <span class="cl">lm.Linear</span>(<span class="nu">784</span>, <span class="nu">128</span>),
+    <span class="cl">lm.ReLU</span>(),
+    <span class="cl">lm.Dropout</span>(<span class="nu">0.3</span>),
+    <span class="cl">lm.Linear</span>(<span class="nu">128</span>, <span class="nu">10</span>),
+)
+<span class="fn">print</span>(<span class="nm">model</span>)
+<span class="fn">print</span>(<span class="st">f"Parameters: {model.num_parameters():,}"</span>)</pre>
+              </div>
+            </div>
+          </div>
+          <div class="install-step">
+            <div class="install-step-content">
+              <h4>Prepare Data</h4>
+              <p>Wrap your numpy arrays in <code>TensorDataset</code> and iterate with <code>DataLoader</code>.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># Synthetic data (replace with real data)</span>
+<span class="nm">X</span> <span class="op">=</span> <span class="nm">np</span>.<span class="fn">random</span>.<span class="fn">randn</span>(<span class="nu">1000</span>, <span class="nu">784</span>).<span class="fn">astype</span>(<span class="nm">np</span>.<span class="nm">float32</span>)
+<span class="nm">y</span> <span class="op">=</span> <span class="nm">np</span>.<span class="fn">random</span>.<span class="fn">randint</span>(<span class="nu">0</span>, <span class="nu">10</span>, <span class="nu">1000</span>)
+
+<span class="nm">X_train</span>, <span class="nm">X_val</span>, <span class="nm">y_train</span>, <span class="nm">y_val</span> <span class="op">=</span> <span class="fn">lm.train_test_split</span>(
+    <span class="nm">X</span>, <span class="nm">y</span>, <span class="nm">test_size</span><span class="op">=</span><span class="nu">0.2</span>, <span class="nm">seed</span><span class="op">=</span><span class="nu">42</span>
+)
+
+<span class="nm">train_loader</span> <span class="op">=</span> <span class="cl">lm.DataLoader</span>(
+    <span class="cl">lm.TensorDataset</span>(<span class="nm">X_train</span>, <span class="nm">y_train</span>),
+    <span class="nm">batch_size</span><span class="op">=</span><span class="nu">64</span>, <span class="nm">shuffle</span><span class="op">=</span><span class="kw">True</span>
+)</pre>
+              </div>
+            </div>
+          </div>
+          <div class="install-step">
+            <div class="install-step-content">
+              <h4>Train with Trainer (High-Level)</h4>
+              <p>Use the built-in <code>Trainer</code> to skip the boilerplate — or write your own loop for full control.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="nm">trainer</span> <span class="op">=</span> <span class="cl">lm.Trainer</span>(
+    <span class="nm">model</span><span class="op">=</span><span class="nm">model</span>,
+    <span class="nm">optimizer</span><span class="op">=</span><span class="cl">lm.Adam</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>),
+    <span class="nm">loss_fn</span><span class="op">=</span><span class="nm">lm</span>.<span class="nm">cross_entropy_loss</span>,
+    <span class="nm">callbacks</span><span class="op">=</span>[
+        <span class="cl">lm.EarlyStopping</span>(<span class="nm">patience</span><span class="op">=</span><span class="nu">10</span>),
+        <span class="cl">lm.ModelCheckpoint</span>(<span class="st">'/tmp/best.lmz'</span>),
+    ],
+    <span class="nm">verbose</span><span class="op">=</span><span class="nu">1</span>,
+)
+<span class="nm">history</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">fit</span>(<span class="nm">train_loader</span>, <span class="nm">val_loader</span>, <span class="nm">epochs</span><span class="op">=</span><span class="nu">50</span>)</pre>
+              </div>
+            </div>
+          </div>
+          <div class="install-step">
+            <div class="install-step-content">
+              <h4>Save & Load</h4>
+              <p>Save your trained model with gzip compression. Load it back with one line.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">python</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+                <pre><span class="cm"># Save (gzip compressed)</span>
+<span class="nm">model</span>.<span class="fn">save</span>(<span class="st">'/path/to/model.lmz'</span>)
+
+<span class="cm"># Load later</span>
+<span class="nm">model</span>.<span class="fn">load</span>(<span class="st">'/path/to/model.lmz'</span>)
+
+<span class="cm"># Inference</span>
+<span class="nm">model</span>.<span class="fn">eval</span>()
+<span class="nm">predictions</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">predict</span>(<span class="nm">X_test</span>)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RASPBERRY PI TIPS -->
+    <section class="section" style="padding-top:0" id="raspberry-pi-tips">
+      <div class="container">
+        <div class="section-label" data-animate>🍓 Raspberry Pi Tips</div>
+        <h2 class="section-title" data-animate>Optimizing for <span>Constrained Devices</span></h2>
+
+        <div class="grid-2">
+          <div data-animate>
+            <div class="card">
+              <div class="card-icon amber">⚙️</div>
+              <h4>Configure Memory Limit</h4>
+              <p>Set a memory cap appropriate for your Pi model to prevent OOM crashes.</p>
+              <div class="code-block" style="margin-top:1rem;">
+                <div class="code-header"><span class="code-lang">python</span></div>
+                <pre><span class="cm"># For Pi 3 (1GB RAM), use 256MB</span>
+<span class="fn">lm.configure_memory</span>(<span class="nm">max_mb</span><span class="op">=</span><span class="nu">256</span>)
+
+<span class="cm"># For Pi Zero (512MB RAM)</span>
+<span class="fn">lm.configure_memory</span>(<span class="nm">max_mb</span><span class="op">=</span><span class="nu">128</span>)</pre>
+              </div>
+            </div>
+          </div>
+          <div data-animate>
+            <div class="card">
+              <div class="card-icon cyan">📡</div>
+              <h4>Monitor System Health</h4>
+              <p>Check CPU temp, RAM usage, and health score before and during training.</p>
+              <div class="code-block" style="margin-top:1rem;">
+                <div class="code-header"><span class="code-lang">python</span></div>
+                <pre><span class="nm">monitor</span> <span class="op">=</span> <span class="cl">lm.SystemMonitor</span>()
+<span class="nm">monitor</span>.<span class="fn">print_status</span>()
+
+<span class="cm"># Health score 0-100</span>
+<span class="nm">score</span> <span class="op">=</span> <span class="nm">monitor</span>.<span class="fn">health_score</span>()
+<span class="kw">if</span> <span class="nm">score</span> <span class="op">&lt;</span> <span class="nu">50</span>:
+    <span class="fn">print</span>(<span class="st">"Warning: system under stress"</span>)</pre>
+              </div>
+            </div>
+          </div>
+          <div data-animate>
+            <div class="card">
+              <div class="card-icon green">🔍</div>
+              <h4>Trace Memory Usage</h4>
+              <p>Use context manager to find which operations consume the most memory.</p>
+              <div class="code-block" style="margin-top:1rem;">
+                <div class="code-header"><span class="code-lang">python</span></div>
+                <pre><span class="kw">with</span> <span class="fn">lm.memory_trace</span>(<span class="st">"Forward Pass"</span>):
+    <span class="nm">out</span> <span class="op">=</span> <span class="nm">model</span>(<span class="nm">X_batch</span>)
+
+<span class="cm"># Optimize for inference only</span>
+<span class="nm">lm</span>.<span class="nm">memory_manager</span>.<span class="fn">optimize_for_inference</span>()</pre>
+              </div>
+            </div>
+          </div>
+          <div data-animate>
+            <div class="card">
+              <div class="card-icon purple">🚀</div>
+              <h4>Use Gradient Accumulation</h4>
+              <p>Simulate large batch sizes on Pi without running out of memory.</p>
+              <div class="code-block" style="margin-top:1rem;">
+                <div class="code-header"><span class="code-lang">python</span></div>
+                <pre><span class="cm"># Accumulate 4 small batches</span>
+<span class="cm"># = effective batch size × 4</span>
+<span class="nm">trainer</span> <span class="op">=</span> <span class="cl">lm.Trainer</span>(
+    <span class="nm">model</span><span class="op">=</span><span class="nm">model</span>,
+    <span class="nm">optimizer</span><span class="op">=</span><span class="nm">optimizer</span>,
+    <span class="nm">loss_fn</span><span class="op">=</span><span class="nm">loss_fn</span>,
+    <span class="nm">grad_accum_steps</span><span class="op">=</span><span class="nu">4</span>,
+)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:2rem;" data-animate>
+          <strong style="color:#fff;">Pro Tips for Raspberry Pi:</strong>
+          <ul style="margin-top:0.75rem;padding-left:1.25rem;display:flex;flex-direction:column;gap:0.4rem;color:var(--text2);">
+            <li>Use <code>model.eval()</code> during inference to disable Dropout and save memory</li>
+            <li>Set <code>requires_grad=False</code> for all parameters during inference</li>
+            <li>Use <code>TinyResNet</code> with <code>base_filters=8</code> for very tight memory budgets</li>
+            <li>Call <code>lm.memory_manager.free_unused()</code> periodically during long training runs</li>
+            <li>Use the <code>ModelProfiler</code> to estimate FLOPs before deploying to understand compute cost</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-brand" style="display:inline-flex;margin-bottom:1rem;"><div class="nav-logo">LM</div>LowMind</a><p>Ultra-lightweight deep learning for Raspberry Pi and resource-constrained environments.</p></div>
+        <div class="footer-col"><h5>Framework</h5><ul><li><a href="features.html">Features</a></li><li><a href="api.html">API Reference</a></li><li><a href="examples.html">Examples</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+        <div class="footer-col"><h5>Getting Started</h5><ul><li><a href="installation.html">Installation</a></li><li><a href="installation.html#quickstart">Quick Start</a></li><li><a href="installation.html#raspberry-pi">Raspberry Pi</a></li></ul></div>
+        <div class="footer-col"><h5>Resources</h5><ul><li><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a></li><li><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 LowMind by Dhaval Vedra. MIT License.</p><div class="footer-links"><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a><a href="changelog.html">v2.1.0</a></div></div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

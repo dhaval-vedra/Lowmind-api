@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples — LowMind Framework</title>
+  <meta name="description" content="13 complete LowMind code examples — from basic tensors to LSTM sequences, CNN image classification, and production inference pipelines." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">LM</div>
+      LowMind
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="api.html">API Reference</a></li>
+      <li><a href="examples.html" class="active">Examples</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="changelog.html">Changelog <span class="nav-badge">v2.1</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="installation.html" class="btn-nav">⚡ Get Started</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="features.html">⚡ Features</a>
+    <a href="api.html">📚 API Reference</a>
+    <a href="examples.html" class="active">💡 Examples</a>
+    <a href="installation.html">📦 Installation</a>
+    <a href="changelog.html">📋 Changelog</a>
+  </div>
+
+  <main>
+    <div class="page-banner">
+      <div class="container">
+        <div class="page-banner-label">💡 Code Examples</div>
+        <h1>Learn by <span style="color:var(--accent)">Example</span></h1>
+        <p>13 complete, runnable examples — from basics to production pipelines. Each example is in the <code>examples/</code> folder of the repository.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <!-- EXAMPLE CARDS GRID -->
+        <div style="margin-bottom:2.5rem" data-animate>
+          <div class="section-label">📋 All 13 Examples</div>
+          <h2 class="section-title">Example <span>Library</span></h2>
+        </div>
+
+        <div class="example-grid" style="margin-bottom:4rem">
+          <!-- 1 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">01</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Basic Tensors</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">01_basic_tensors.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Tensor creation, arithmetic, autograd from scratch. Learn the core building block of LowMind — the Tensor and its gradient computation.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">Tensor</span><span class="tag">Autograd</span><span class="tag">Beginner</span></div>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">02</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Linear Regression</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">02_linear_regression.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Linear regression with SGD and a custom training loop. Learn how to define parameters manually and update them with gradients.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">SGD</span><span class="tag">Regression</span><span class="tag">Custom Loop</span></div>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">03</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">MLP Classification</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">03_mlp_classification.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>XOR classification with Sequential model, Adam optimizer, and DataLoader. Demonstrates the full training workflow for classification.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">Sequential</span><span class="tag">Adam</span><span class="tag">DataLoader</span></div>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">04</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">MNIST-Like Pipeline</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">04_mnist_like.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Full pipeline: MicroMLP + high-level Trainer + EarlyStopping + ModelCheckpoint. The recommended pattern for most classification tasks.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">MicroMLP</span><span class="tag">Trainer</span><span class="tag green">Callbacks</span></div>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">05</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">CNN Image Classification</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">05_cnn_image.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>MicroCNN for image classification. Covers Conv2d, BatchNorm, MaxPool, and the full CNN → flatten → Linear pipeline.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">MicroCNN</span><span class="tag">BatchNorm</span><span class="tag">MaxPool</span></div>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">06</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Optimizers Comparison</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">06_optimizers_comparison.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Benchmark SGD vs Adam vs RMSprop vs AdaGrad on the same task. Visualize convergence speed and final accuracy differences.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">SGD</span><span class="tag">Adam</span><span class="tag">RMSprop</span><span class="tag amber">AdaGrad</span></div>
+            </div>
+          </div>
+
+          <!-- 7 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">07</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Custom Layers</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">07_custom_layer.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Build a custom attention layer, LayerNorm, and transformer block by subclassing <code>lm.Module</code>. Shows the full extensibility model.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag purple">Custom Module</span><span class="tag purple">Attention</span><span class="tag purple">Transformer</span></div>
+            </div>
+          </div>
+
+          <!-- 8 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">08</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Save & Load Model</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">08_save_load_model.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Save/load weights with gzip compression, access state_dict, perform transfer learning. Essential for deployment on Pi.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">save()</span><span class="tag">load()</span><span class="tag green">Transfer Learning</span></div>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">09</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">LR Schedulers</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">09_lr_schedulers.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Compare 6 LR scheduler strategies: StepLR, CosineAnnealing, ReduceLROnPlateau, Cyclic, MultiStep, LinearWarmup.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">StepLR</span><span class="tag">CosineAnnealing</span><span class="tag amber">Cyclic</span></div>
+            </div>
+          </div>
+
+          <!-- 10 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num">10</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Raspberry Pi Monitor</div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">10_raspberry_pi_monitor.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>System monitoring, memory tracing, health scoring. Shows how to use LowMind's Pi-specific features for safe training on constrained hardware.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag">SystemMonitor</span><span class="tag green">memory_trace</span><span class="tag">🍓 Pi</span></div>
+            </div>
+          </div>
+
+          <!-- 11 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num" style="background:linear-gradient(135deg,var(--accent3),#059669);">11</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">LSTM Sequence <span class="badge badge-new">v2.1</span></div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">11_lstm_sequence.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Sequence modeling with LSTM and GRU layers. Demonstrates multi-layer RNN setup, sequence batching, and no_grad context during inference.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag green">LSTM</span><span class="tag green">GRU</span><span class="tag green">Sequences</span></div>
+            </div>
+          </div>
+
+          <!-- 12 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num" style="background:linear-gradient(135deg,var(--accent3),#059669);">12</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Weight Init Comparison <span class="badge badge-new">v2.1</span></div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">12_weight_init_comparison.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>Compare Xavier, Kaiming, and orthogonal initialization strategies. See how weight init affects convergence speed and final accuracy.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag green">Xavier</span><span class="tag green">Kaiming</span><span class="tag green">Orthogonal</span></div>
+            </div>
+          </div>
+
+          <!-- 13 -->
+          <div class="example-card" data-animate>
+            <div class="example-card-header">
+              <div class="example-num" style="background:linear-gradient(135deg,var(--accent3),#059669);">13</div>
+              <div>
+                <div style="font-weight:700;color:#fff;font-size:0.95rem;">Production Inference Pipeline <span class="badge badge-new">v2.1</span></div>
+                <div style="color:var(--text3);font-size:0.78rem;font-family:var(--mono);">13_production_inference.py</div>
+              </div>
+            </div>
+            <div class="example-card-body">
+              <p>End-to-end production inference: load model, optimize memory, batch inference with no_grad, monitor system health. Perfect Pi deployment template.</p>
+              <div class="card-tags" style="margin-top:0.75rem"><span class="tag green">Production</span><span class="tag green">Inference</span><span class="tag green">no_grad</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOW TO RUN -->
+        <div style="margin-bottom:3rem">
+          <div class="section-label" data-animate>▶️ Run Examples</div>
+          <h2 class="section-title" data-animate>How to <span>Run</span></h2>
+          <div class="code-block" data-animate>
+            <div class="code-header"><span class="code-lang">bash</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+            <pre><span class="cm"># Clone the repository first</span>
+<span style="color:var(--accent3);">git clone</span> https://github.com/dhaval-vedra/lowmind.git
+<span style="color:var(--accent3);">cd</span> lowmind
+<span style="color:var(--accent3);">pip install</span> -e .
+
+<span class="cm"># Run any example</span>
+<span style="color:var(--accent3);">python</span> examples/01_basic_tensors.py
+<span style="color:var(--accent3);">python</span> examples/04_mnist_like.py
+<span style="color:var(--accent3);">python</span> examples/05_cnn_image.py
+<span style="color:var(--accent3);">python</span> examples/10_raspberry_pi_monitor.py
+<span style="color:var(--accent3);">python</span> examples/11_lstm_sequence.py</pre>
+          </div>
+        </div>
+
+        <!-- COMPLETE EXAMPLE -->
+        <div class="section-label" data-animate>📄 Full Code Sample</div>
+        <h2 class="section-title" data-animate>Complete <span>Training Pipeline</span></h2>
+        <p class="section-desc" data-animate>Here's a full end-to-end example showing the recommended pattern for training and evaluating a model with LowMind.</p>
+
+        <div class="code-block" data-animate>
+          <div class="code-header"><span class="code-lang">python — complete_example.py</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+          <pre><span class="kw">import</span> <span class="nm">lowmind</span> <span class="kw">as</span> <span class="nm">lm</span>
+<span class="kw">import</span> <span class="nm">numpy</span> <span class="kw">as</span> <span class="nm">np</span>
+
+<span class="cm"># ── 1. Data Preparation ──────────────────────────────</span>
+<span class="nm">X</span> <span class="op">=</span> <span class="nm">np</span>.<span class="fn">random</span>.<span class="fn">randn</span>(<span class="nu">2000</span>, <span class="nu">20</span>).<span class="fn">astype</span>(<span class="nm">np</span>.<span class="nm">float32</span>)
+<span class="nm">y</span> <span class="op">=</span> (<span class="nm">X</span>[:, <span class="nu">0</span>] <span class="op">+</span> <span class="nm">X</span>[:, <span class="nu">1</span>] <span class="op">&gt;</span> <span class="nu">0</span>).<span class="fn">astype</span>(<span class="nm">np</span>.<span class="nm">int64</span>)
+
+<span class="nm">X_train</span>, <span class="nm">X_val</span>, <span class="nm">y_train</span>, <span class="nm">y_val</span> <span class="op">=</span> <span class="fn">lm.train_test_split</span>(
+    <span class="nm">X</span>, <span class="nm">y</span>, <span class="nm">test_size</span><span class="op">=</span><span class="nu">0.2</span>, <span class="nm">seed</span><span class="op">=</span><span class="nu">42</span>
+)
+
+<span class="nm">train_loader</span> <span class="op">=</span> <span class="cl">lm.DataLoader</span>(
+    <span class="cl">lm.TensorDataset</span>(<span class="nm">X_train</span>, <span class="nm">y_train</span>),
+    <span class="nm">batch_size</span><span class="op">=</span><span class="nu">64</span>, <span class="nm">shuffle</span><span class="op">=</span><span class="kw">True</span>
+)
+<span class="nm">val_loader</span> <span class="op">=</span> <span class="cl">lm.DataLoader</span>(
+    <span class="cl">lm.TensorDataset</span>(<span class="nm">X_val</span>, <span class="nm">y_val</span>),
+    <span class="nm">batch_size</span><span class="op">=</span><span class="nu">64</span>
+)
+
+<span class="cm"># ── 2. Model Architecture ────────────────────────────</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.Sequential</span>(
+    <span class="cl">lm.Linear</span>(<span class="nu">20</span>, <span class="nu">64</span>),
+    <span class="cl">lm.BatchNorm1d</span>(<span class="nu">64</span>),
+    <span class="cl">lm.ReLU</span>(),
+    <span class="cl">lm.Dropout</span>(<span class="nu">0.3</span>),
+    <span class="cl">lm.Linear</span>(<span class="nu">64</span>, <span class="nu">32</span>),
+    <span class="cl">lm.ReLU</span>(),
+    <span class="cl">lm.Linear</span>(<span class="nu">32</span>, <span class="nu">2</span>),
+)
+<span class="fn">print</span>(<span class="st">f"Parameters: {model.num_parameters():,}"</span>)
+
+<span class="cm"># ── 3. Trainer Setup ─────────────────────────────────</span>
+<span class="nm">optimizer</span> <span class="op">=</span> <span class="cl">lm.AdamW</span>(<span class="nm">model</span>.<span class="fn">parameters</span>(), <span class="nm">lr</span><span class="op">=</span><span class="nu">1e-3</span>, <span class="nm">weight_decay</span><span class="op">=</span><span class="nu">1e-4</span>)
+<span class="nm">scheduler</span> <span class="op">=</span> <span class="cl">lm.CosineAnnealingLR</span>(<span class="nm">optimizer</span>, <span class="nm">T_max</span><span class="op">=</span><span class="nu">50</span>)
+
+<span class="nm">trainer</span> <span class="op">=</span> <span class="cl">lm.Trainer</span>(
+    <span class="nm">model</span><span class="op">=</span><span class="nm">model</span>,
+    <span class="nm">optimizer</span><span class="op">=</span><span class="nm">optimizer</span>,
+    <span class="nm">loss_fn</span><span class="op">=</span><span class="nm">lm</span>.<span class="nm">cross_entropy_loss</span>,
+    <span class="nm">callbacks</span><span class="op">=</span>[
+        <span class="cl">lm.EarlyStopping</span>(<span class="nm">patience</span><span class="op">=</span><span class="nu">15</span>, <span class="nm">mode</span><span class="op">=</span><span class="st">'max'</span>),
+        <span class="cl">lm.ModelCheckpoint</span>(<span class="st">'/tmp/best.lmz'</span>, <span class="nm">monitor</span><span class="op">=</span><span class="st">'val_acc'</span>, <span class="nm">mode</span><span class="op">=</span><span class="st">'max'</span>),
+        <span class="cl">lm.LRSchedulerCallback</span>(<span class="nm">scheduler</span>),
+        <span class="cl">lm.History</span>(),
+    ],
+    <span class="nm">clip_grad</span><span class="op">=</span><span class="nu">1.0</span>,
+    <span class="nm">verbose</span><span class="op">=</span><span class="nu">5</span>,
+)
+
+<span class="cm"># ── 4. Train ──────────────────────────────────────────</span>
+<span class="nm">history</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">fit</span>(<span class="nm">train_loader</span>, <span class="nm">val_loader</span>, <span class="nm">epochs</span><span class="op">=</span><span class="nu">100</span>)
+
+<span class="cm"># ── 5. Evaluate & Inference ───────────────────────────</span>
+<span class="nm">loss</span>, <span class="nm">acc</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">evaluate</span>(<span class="nm">val_loader</span>)
+<span class="fn">print</span>(<span class="st">f"Val Accuracy: {acc:.4f}"</span>)
+
+<span class="cm"># Inference with softmax probabilities</span>
+<span class="nm">probs</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">predict_proba</span>(<span class="nm">X_val</span>)  <span class="cm"># (N, 2) probabilities</span>
+<span class="nm">preds</span> <span class="op">=</span> <span class="nm">trainer</span>.<span class="fn">predict</span>(<span class="nm">X_val</span>)        <span class="cm"># (N,) class indices</span>
+
+<span class="cm"># Metrics</span>
+<span class="fn">print</span>(<span class="st">f"F1: {lm.f1_score(preds, y_val, num_classes=2):.4f}"</span>)
+<span class="fn">print</span>(<span class="nm">lm</span>.<span class="fn">confusion_matrix</span>(<span class="nm">preds</span>, <span class="nm">y_val</span>))
+
+<span class="cm"># ── 6. Save final model ───────────────────────────────</span>
+<span class="nm">model</span>.<span class="fn">save</span>(<span class="st">'/tmp/final_model.lmz'</span>)
+<span class="fn">print</span>(<span class="st">"✓ Model saved!"</span>)</pre>
+        </div>
+
+        <!-- Custom Module Example -->
+        <div style="margin-top:3rem">
+          <div class="section-label" data-animate>🔧 Advanced</div>
+          <h2 class="section-title" data-animate>Custom <span>Module Example</span></h2>
+          <div class="code-block" data-animate>
+            <div class="code-header"><span class="code-lang">python — custom_attention.py</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+            <pre><span class="cm"># Build a custom self-attention layer</span>
+<span class="kw">class</span> <span class="cl">SelfAttention</span>(<span class="cl">lm.Module</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, <span class="nm">dim</span>):
+        <span class="fn">super</span>().<span class="fn">__init__</span>()
+        <span class="nm">self</span>.<span class="nm">q</span> <span class="op">=</span> <span class="cl">lm.Linear</span>(<span class="nm">dim</span>, <span class="nm">dim</span>)
+        <span class="nm">self</span>.<span class="nm">k</span> <span class="op">=</span> <span class="cl">lm.Linear</span>(<span class="nm">dim</span>, <span class="nm">dim</span>)
+        <span class="nm">self</span>.<span class="nm">v</span> <span class="op">=</span> <span class="cl">lm.Linear</span>(<span class="nm">dim</span>, <span class="nm">dim</span>)
+        <span class="nm">self</span>.<span class="nm">scale</span> <span class="op">=</span> <span class="nm">dim</span> <span class="op">**</span> <span class="op">-</span><span class="nu">0.5</span>
+
+    <span class="kw">def</span> <span class="fn">forward</span>(<span class="nm">self</span>, <span class="nm">x</span>):          <span class="cm"># x: (B, T, D)</span>
+        <span class="nm">Q</span> <span class="op">=</span> <span class="nm">self</span>.<span class="nm">q</span>(<span class="nm">x</span>)
+        <span class="nm">K</span> <span class="op">=</span> <span class="nm">self</span>.<span class="nm">k</span>(<span class="nm">x</span>)
+        <span class="nm">V</span> <span class="op">=</span> <span class="nm">self</span>.<span class="nm">v</span>(<span class="nm">x</span>)
+        <span class="cm"># Scaled dot-product attention</span>
+        <span class="nm">attn</span> <span class="op">=</span> (<span class="nm">Q</span> <span class="op">@</span> <span class="nm">K</span>.<span class="nm">T</span> <span class="op">*</span> <span class="nm">self</span>.<span class="nm">scale</span>).<span class="fn">softmax</span>(<span class="nm">axis</span><span class="op">=-</span><span class="nu">1</span>)
+        <span class="kw">return</span> <span class="nm">attn</span> <span class="op">@</span> <span class="nm">V</span>
+
+<span class="cm"># Use in a model</span>
+<span class="nm">attn</span> <span class="op">=</span> <span class="cl">SelfAttention</span>(<span class="nu">64</span>)
+<span class="fn">print</span>(<span class="st">f"Parameters: {attn.num_parameters():,}"</span>)</pre>
+          </div>
+        </div>
+
+        <!-- Pi Example -->
+        <div style="margin-top:3rem">
+          <div class="section-label" data-animate>🍓 Raspberry Pi</div>
+          <h2 class="section-title" data-animate>Production <span>Inference on Pi</span></h2>
+          <div class="code-block" data-animate>
+            <div class="code-header"><span class="code-lang">python — pi_inference.py</span><button class="copy-btn" onclick="copyCode(this)">⎘ Copy</button></div>
+            <pre><span class="kw">import</span> <span class="nm">lowmind</span> <span class="kw">as</span> <span class="nm">lm</span>
+<span class="kw">import</span> <span class="nm">numpy</span> <span class="kw">as</span> <span class="nm">np</span>
+
+<span class="cm"># Configure for Raspberry Pi</span>
+<span class="fn">lm.configure_memory</span>(<span class="nm">max_mb</span><span class="op">=</span><span class="nu">192</span>)
+
+<span class="cm"># Check system health before inference</span>
+<span class="nm">monitor</span> <span class="op">=</span> <span class="cl">lm.SystemMonitor</span>()
+<span class="nm">health</span> <span class="op">=</span> <span class="nm">monitor</span>.<span class="fn">health_score</span>()
+<span class="fn">print</span>(<span class="st">f"System health: {health}/100"</span>)
+<span class="kw">if</span> <span class="nm">health</span> <span class="op">&lt;</span> <span class="nu">40</span>:
+    <span class="fn">print</span>(<span class="st">"Warning: system under stress, consider waiting"</span>)
+
+<span class="cm"># Load model</span>
+<span class="nm">model</span> <span class="op">=</span> <span class="cl">lm.MicroMLP</span>(<span class="nm">input_size</span><span class="op">=</span><span class="nu">20</span>, <span class="nm">hidden_sizes</span><span class="op">=</span>[<span class="nu">32</span>], <span class="nm">output_size</span><span class="op">=</span><span class="nu">2</span>)
+<span class="nm">model</span>.<span class="fn">load</span>(<span class="st">'/path/to/model.lmz'</span>)
+<span class="nm">model</span>.<span class="fn">eval</span>()
+
+<span class="cm"># Optimize memory for inference</span>
+<span class="nm">lm</span>.<span class="nm">memory_manager</span>.<span class="fn">optimize_for_inference</span>()
+
+<span class="cm"># Batch inference with no_grad + memory tracing</span>
+<span class="nm">results</span> <span class="op">=</span> []
+<span class="kw">with</span> <span class="fn">lm.memory_trace</span>(<span class="st">"Batch Inference"</span>):
+    <span class="kw">with</span> <span class="fn">lm.no_grad</span>():
+        <span class="kw">for</span> <span class="nm">batch</span> <span class="kw">in</span> <span class="fn">get_batches</span>(<span class="nm">data</span>, <span class="nm">size</span><span class="op">=</span><span class="nu">32</span>):
+            <span class="nm">out</span> <span class="op">=</span> <span class="nm">model</span>(<span class="cl">lm.Tensor</span>(<span class="nm">batch</span>))
+            <span class="nm">results</span>.<span class="fn">append</span>(<span class="nm">out</span>.<span class="fn">numpy</span>())
+
+<span class="nm">predictions</span> <span class="op">=</span> <span class="nm">np</span>.<span class="fn">concatenate</span>(<span class="nm">results</span>)
+<span class="fn">print</span>(<span class="st">f"Predicted {len(predictions)} samples"</span>)</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-brand" style="display:inline-flex;margin-bottom:1rem;"><div class="nav-logo">LM</div>LowMind</a><p>Ultra-lightweight deep learning for Raspberry Pi and resource-constrained environments.</p></div>
+        <div class="footer-col"><h5>Framework</h5><ul><li><a href="features.html">Features</a></li><li><a href="api.html">API Reference</a></li><li><a href="examples.html">Examples</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+        <div class="footer-col"><h5>Getting Started</h5><ul><li><a href="installation.html">Installation</a></li><li><a href="installation.html#quickstart">Quick Start</a></li><li><a href="installation.html#raspberry-pi">Raspberry Pi</a></li></ul></div>
+        <div class="footer-col"><h5>Resources</h5><ul><li><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a></li><li><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 LowMind by Dhaval Vedra. MIT License.</p><div class="footer-links"><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a><a href="changelog.html">v2.1.0</a></div></div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

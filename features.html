@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features — LowMind Framework</title>
+  <meta name="description" content="Explore all features of LowMind: layers, optimizers, schedulers, metrics, trainer, callbacks, pre-built models and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">LM</div>
+      LowMind
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="features.html" class="active">Features</a></li>
+      <li><a href="api.html">API Reference</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="installation.html">Install</a></li>
+      <li><a href="changelog.html">Changelog <span class="nav-badge">v2.1</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="installation.html" class="btn-nav">⚡ Get Started</a>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="features.html" class="active">⚡ Features</a>
+    <a href="api.html">📚 API Reference</a>
+    <a href="examples.html">💡 Examples</a>
+    <a href="installation.html">📦 Installation</a>
+    <a href="changelog.html">📋 Changelog</a>
+  </div>
+
+  <main>
+    <!-- PAGE BANNER -->
+    <div class="page-banner">
+      <div class="container">
+        <div class="page-banner-label">⚡ Framework Features</div>
+        <h1>Everything You Need to <span style="color:var(--accent)">Build & Deploy</span></h1>
+        <p>A complete deep learning toolkit — from tensors and autograd to pre-built models and system monitoring — all in one lightweight package.</p>
+      </div>
+    </div>
+
+    <!-- AUTOGRAD -->
+    <section class="section">
+      <div class="container">
+        <div class="section-label" data-animate>🔄 Core Engine</div>
+        <h2 class="section-title" data-animate>Automatic <span>Differentiation</span></h2>
+        <p class="section-desc" data-animate>Reverse-mode autograd engine that supports full broadcasting, tuple-axis reductions, and gradient accumulation — the backbone of every model.</p>
+
+        <div class="grid-2" style="gap:2rem;align-items:start">
+          <div data-animate>
+            <div class="card">
+              <div class="card-icon cyan">🧮</div>
+              <h4>Tensor with Autograd</h4>
+              <p>Every Tensor tracks its computation history. Call <code>.backward()</code> to flow gradients back through the entire graph automatically.</p>
+              <div class="card-tags">
+                <span class="tag">requires_grad</span>
+                <span class="tag">backward()</span>
+                <span class="tag">grad</span>
+                <span class="tag">detach()</span>
+              </div>
+            </div>
+          </div>
+          <div data-animate>
+            <div class="card">
+              <div class="card-icon purple">📐</div>
+              <h4>Broadcasting Support</h4>
+              <p>Full NumPy-compatible broadcasting in all forward and backward passes. Handles complex shapes including tuple-axis reductions needed for CNN global pooling.</p>
+              <div class="card-tags">
+                <span class="tag purple">Broadcasting</span>
+                <span class="tag purple">Tuple Axis</span>
+                <span class="tag purple">CNN Pooling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem" data-animate>
+          <div class="highlight-box success">
+            <strong style="color:#fff;">New in v2.1:</strong> <code>no_grad</code> and <code>enable_grad</code> context managers — disable autograd during inference. Also works as a decorator. The Trainer now uses <code>no_grad</code> automatically during validation for memory efficiency.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYERS -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-label" data-animate>🏗️ Neural Network Layers</div>
+        <h2 class="section-title" data-animate>Layers & <span>Activations</span></h2>
+        <p class="section-desc" data-animate>All layers subclass <code>lm.Module</code>. Mix and match in <code>Sequential</code> or build custom modules.</p>
+
+        <div class="grid-auto">
+          <div class="card" data-animate>
+            <div class="card-icon blue">⬛</div>
+            <h4>Linear</h4>
+            <p>Fully-connected layer with configurable input/output features and optional bias.</p>
+            <div class="card-tags"><span class="tag">in_features</span><span class="tag">out_features</span><span class="tag">bias</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon cyan">🔲</div>
+            <h4>Conv2d</h4>
+            <p>2D convolution with im2col-based backward pass. Supports padding, stride, and multi-channel inputs.</p>
+            <div class="card-tags"><span class="tag">kernel_size</span><span class="tag">stride</span><span class="tag">padding</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon green">📏</div>
+            <h4>BatchNorm1d / 2d</h4>
+            <p>Normalizes activations per batch. Supports learnable gamma/beta, running stats, and train/eval modes.</p>
+            <div class="card-tags"><span class="tag green">Running Stats</span><span class="tag green">Train/Eval</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon amber">🔽</div>
+            <h4>MaxPool2d / AvgPool2d</h4>
+            <p>Spatial pooling layers that reduce feature map dimensions. Configurable kernel and stride.</p>
+            <div class="card-tags"><span class="tag amber">MaxPool</span><span class="tag amber">AvgPool</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon red">💧</div>
+            <h4>Dropout</h4>
+            <p>Randomly zeroes elements during training. Automatically disabled in eval mode via <code>model.eval()</code>.</p>
+            <div class="card-tags"><span class="tag">p=0.5</span><span class="tag">Auto Eval</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon purple">📝</div>
+            <h4>Embedding</h4>
+            <p>Learnable lookup table for integer indices. Ideal for NLP tasks and categorical features.</p>
+            <div class="card-tags"><span class="tag purple">num_embeddings</span><span class="tag purple">embedding_dim</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon teal">🔁</div>
+            <h4>LSTM <span class="badge badge-new">New v2.1</span></h4>
+            <p>Long Short-Term Memory layer with single-cell and multi-step variants, multi-layer support, and dropout.</p>
+            <div class="card-tags"><span class="tag">Multi-layer</span><span class="tag">Dropout</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon pink">🔄</div>
+            <h4>GRU <span class="badge badge-new">New v2.1</span></h4>
+            <p>Gated Recurrent Unit — lighter than LSTM with comparable performance for many sequence tasks.</p>
+            <div class="card-tags"><span class="tag">Gated</span><span class="tag">Recurrent</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon blue">⏬</div>
+            <h4>Flatten</h4>
+            <p>Reshapes feature maps to 1D vectors. Configurable <code>start_dim</code> for flexible CNN-to-FC transitions.</p>
+            <div class="card-tags"><span class="tag">start_dim=1</span></div>
+          </div>
+        </div>
+
+        <!-- Activations -->
+        <div style="margin-top:3rem" data-animate>
+          <h3 style="color:#fff;margin-bottom:1.5rem;">Activation Functions</h3>
+          <div class="grid-4">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">ReLU</div>
+              <div style="color:var(--text3);font-size:0.75rem;">max(0, x)</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">LeakyReLU</div>
+              <div style="color:var(--text3);font-size:0.75rem;">x if x&gt;0 else αx</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">ELU</div>
+              <div style="color:var(--text3);font-size:0.75rem;">Smooth negative region</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">GELU</div>
+              <div style="color:var(--text3);font-size:0.75rem;">Gaussian error linear</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">Sigmoid</div>
+              <div style="color:var(--text3);font-size:0.75rem;">1/(1+e^-x)</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">Tanh</div>
+              <div style="color:var(--text3);font-size:0.75rem;">(e^x-e^-x)/(e^x+e^-x)</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">Softmax</div>
+              <div style="color:var(--text3);font-size:0.75rem;">Probability distribution</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center;">
+              <div style="color:var(--accent);font-family:var(--mono);font-size:0.9rem;font-weight:700;margin-bottom:0.25rem;">LogSoftmax</div>
+              <div style="color:var(--text3);font-size:0.75rem;">log(softmax(x))</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTIMIZERS & SCHEDULERS -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-label" data-animate>⚙️ Training</div>
+        <h2 class="section-title" data-animate>Optimizers & <span>LR Schedulers</span></h2>
+
+        <div class="grid-2" style="margin-bottom:2rem">
+          <div data-animate>
+            <h3 style="color:#fff;margin-bottom:1.25rem;">Optimizers</h3>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div class="card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                <div style="width:40px;height:40px;background:rgba(0,212,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:0.85rem;flex-shrink:0;">SGD</div>
+                <div><div style="font-weight:600;color:#fff;font-size:0.9rem;">SGD + Nesterov</div><div style="color:var(--text3);font-size:0.8rem;">Momentum, weight decay, Nesterov acceleration</div></div>
+              </div>
+              <div class="card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                <div style="width:40px;height:40px;background:rgba(124,58,237,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#a78bfa;font-size:0.85rem;flex-shrink:0;">Adam</div>
+                <div><div style="font-weight:600;color:#fff;font-size:0.9rem;">Adam + AMSGrad</div><div style="color:var(--text3);font-size:0.8rem;">Adaptive moment estimation with optional AMSGrad</div></div>
+              </div>
+              <div class="card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#34d399;font-size:0.85rem;flex-shrink:0;">AdW</div>
+                <div><div style="font-weight:600;color:#fff;font-size:0.9rem;">AdamW</div><div style="color:var(--text3);font-size:0.8rem;">Adam with decoupled weight decay — preferred for regularization</div></div>
+              </div>
+              <div class="card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                <div style="width:40px;height:40px;background:rgba(245,158,11,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fbbf24;font-size:0.85rem;flex-shrink:0;">RMS</div>
+                <div><div style="font-weight:600;color:#fff;font-size:0.9rem;">RMSprop</div><div style="color:var(--text3);font-size:0.8rem;">Root mean square propagation with momentum</div></div>
+              </div>
+              <div class="card" style="padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                <div style="width:40px;height:40px;background:rgba(239,68,68,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#f87171;font-size:0.85rem;flex-shrink:0;">AdG</div>
+                <div><div style="font-weight:600;color:#fff;font-size:0.9rem;">AdaGrad</div><div style="color:var(--text3);font-size:0.8rem;">Adaptive gradient algorithm for sparse features</div></div>
+              </div>
+            </div>
+            <div class="highlight-box" style="margin-top:1rem;">
+              <strong style="color:var(--accent);">New in v2.1:</strong> All optimizers support <strong style="color:#fff">parameter groups</strong> — set different LR/weight-decay per layer group, just like PyTorch.
+            </div>
+          </div>
+          <div data-animate>
+            <h3 style="color:#fff;margin-bottom:1.25rem;">LR Schedulers</h3>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">StepLR</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Decay by gamma every N epochs</div></div>
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">MultiStepLR</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Decay at specific milestone epochs</div></div>
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">CosineAnnealingLR</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Smooth cosine decay to eta_min</div></div>
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">ReduceLROnPlateau</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Reduce when metric stops improving</div></div>
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">ExponentialLR</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Exponential decay every epoch</div></div>
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">LinearWarmupLR</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Linear warmup over N steps</div></div>
+              <div class="card" style="padding:1rem 1.25rem;"><div style="font-weight:600;color:var(--accent);font-size:0.9rem;font-family:var(--mono);">CyclicLR</div><div style="color:var(--text3);font-size:0.8rem;margin-top:0.25rem;">Cyclic LR between base and max (per batch)</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-label" data-animate>📊 Evaluation</div>
+        <h2 class="section-title" data-animate>Metrics & <span>Monitoring</span></h2>
+
+        <div class="grid-2" style="margin-bottom:2rem">
+          <div data-animate>
+            <h3 style="color:#fff;margin-bottom:1.25rem;">Classification Metrics</h3>
+            <div class="table-wrap">
+              <table class="feature-table">
+                <thead><tr><th>Function</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td>accuracy()</td><td>Top-1 accuracy, 0–1 float</td></tr>
+                  <tr><td>top_k_accuracy()</td><td>Top-k accuracy (e.g. top-5)</td></tr>
+                  <tr><td>precision()</td><td>Macro/micro/per-class precision</td></tr>
+                  <tr><td>recall()</td><td>Macro/micro/per-class recall</td></tr>
+                  <tr><td>f1_score()</td><td>Macro/micro/per-class F1</td></tr>
+                  <tr><td>confusion_matrix()</td><td>(C, C) numpy array</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div data-animate>
+            <h3 style="color:#fff;margin-bottom:1.25rem;">Regression Metrics</h3>
+            <div class="table-wrap" style="margin-bottom:1.5rem">
+              <table class="feature-table">
+                <thead><tr><th>Function</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td>r2_score()</td><td>R² coefficient of determination</td></tr>
+                  <tr><td>mean_squared_error()</td><td>MSE between predictions and targets</td></tr>
+                  <tr><td>mean_absolute_error()</td><td>MAE — outlier-robust error metric</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 style="color:#fff;margin-bottom:1.25rem;">System Monitoring</h3>
+            <div class="card">
+              <div class="card-icon teal">📡</div>
+              <h4>SystemMonitor</h4>
+              <p>Track CPU usage, RAM, temperature and health score on Raspberry Pi in real time. Use <code>memory_trace</code> context to find bottlenecks, and <code>ModelProfiler</code> to measure FLOPs and throughput.</p>
+              <div class="card-tags">
+                <span class="tag">health_score()</span>
+                <span class="tag green">memory_trace</span>
+                <span class="tag purple">ModelProfiler</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINER & CALLBACKS -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-label" data-animate>🏋️ High-Level API</div>
+        <h2 class="section-title" data-animate>Trainer & <span>Callbacks</span></h2>
+        <p class="section-desc" data-animate>Skip the boilerplate. The Trainer handles training loops, validation, logging, and callbacks automatically.</p>
+
+        <div class="grid-2">
+          <div data-animate>
+            <div class="gradient-card">
+              <div class="gradient-card-inner">
+                <h4 style="color:#fff;margin-bottom:1rem;">lm.Trainer</h4>
+                <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:0.75rem;"><span style="color:var(--accent3);font-size:1.1rem;">✓</span><div><div style="color:#fff;font-size:0.9rem;font-weight:600;">Auto Training Loop</div><div style="color:var(--text3);font-size:0.8rem;">Handles epoch, batch, forward, backward, step</div></div></div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;"><span style="color:var(--accent3);font-size:1.1rem;">✓</span><div><div style="color:#fff;font-size:0.9rem;font-weight:600;">Validation Support</div><div style="color:var(--text3);font-size:0.8rem;">Automatic validation after each epoch with no_grad</div></div></div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;"><span style="color:var(--accent3);font-size:1.1rem;">✓</span><div><div style="color:#fff;font-size:0.9rem;font-weight:600;">Gradient Clipping</div><div style="color:var(--text3);font-size:0.8rem;">clip_grad parameter to prevent exploding gradients</div></div></div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;"><span style="color:var(--accent3);font-size:1.1rem;">✓</span><div><div style="color:#fff;font-size:0.9rem;font-weight:600;">Gradient Accumulation <span class="badge badge-new">New</span></div><div style="color:var(--text3);font-size:0.8rem;">Simulate large batches on Pi with grad_accum_steps</div></div></div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;"><span style="color:var(--accent3);font-size:1.1rem;">✓</span><div><div style="color:#fff;font-size:0.9rem;font-weight:600;">Predict & Evaluate</div><div style="color:var(--text3);font-size:0.8rem;">trainer.predict(), predict_proba(), evaluate()</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-animate>
+            <h3 style="color:#fff;margin-bottom:1.25rem;">Built-in Callbacks</h3>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div class="card" style="padding:1.25rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+                  <span style="font-size:1.2rem;">⏹️</span>
+                  <h4 style="margin:0;">EarlyStopping</h4>
+                </div>
+                <p style="font-size:0.85rem;">Stop training when a metric stops improving. Configure patience, min_delta, and mode (min/max).</p>
+              </div>
+              <div class="card" style="padding:1.25rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+                  <span style="font-size:1.2rem;">💾</span>
+                  <h4 style="margin:0;">ModelCheckpoint</h4>
+                </div>
+                <p style="font-size:0.85rem;">Automatically save the best model weights to disk during training. Monitors any metric.</p>
+              </div>
+              <div class="card" style="padding:1.25rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+                  <span style="font-size:1.2rem;">📉</span>
+                  <h4 style="margin:0;">LRSchedulerCallback</h4>
+                </div>
+                <p style="font-size:0.85rem;">Integrate any LR scheduler into the Trainer callback system seamlessly.</p>
+              </div>
+              <div class="card" style="padding:1.25rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+                  <span style="font-size:1.2rem;">📊</span>
+                  <h4 style="margin:0;">History</h4>
+                </div>
+                <p style="font-size:0.85rem;">Record all training metrics per epoch. Access via <code>history['train_loss']</code> for plotting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRE-BUILT MODELS -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-label" data-animate>🤖 Ready-to-Use</div>
+        <h2 class="section-title" data-animate>Pre-built <span>Models</span></h2>
+        <div class="grid-3">
+          <div class="card" data-animate>
+            <div class="card-icon cyan">🧠</div>
+            <h4>MicroMLP</h4>
+            <p>Multi-layer perceptron for tabular and flat data. Configurable hidden layer sizes with built-in Dropout regularization.</p>
+            <div class="card-tags"><span class="tag">Tabular Data</span><span class="tag">Customizable</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon purple">🖼️</div>
+            <h4>MicroCNN</h4>
+            <p>Lightweight CNN optimized for small images (32×32). Supports RGB and grayscale inputs with configurable num_classes.</p>
+            <div class="card-tags"><span class="tag purple">Image Classification</span><span class="tag purple">Small Images</span></div>
+          </div>
+          <div class="card" data-animate>
+            <div class="card-icon green">🔗</div>
+            <h4>TinyResNet</h4>
+            <p>ResNet with residual connections for better gradient flow. Reduce base_filters to 8 for very constrained devices.</p>
+            <div class="card-tags"><span class="tag green">Residual Connections</span><span class="tag green">Configurable</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEIGHT INIT -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-label" data-animate>🎯 New in v2.1</div>
+        <h2 class="section-title" data-animate>Weight <span>Initialization</span></h2>
+        <div class="grid-auto" data-animate>
+          <div class="card"><div style="font-family:var(--mono);color:var(--accent);font-weight:600;margin-bottom:0.5rem;">xavier_uniform_</div><p style="font-size:0.85rem;">Uniform distribution scaled by fan-in and fan-out. Ideal for tanh/sigmoid layers.</p></div>
+          <div class="card"><div style="font-family:var(--mono);color:var(--accent);font-weight:600;margin-bottom:0.5rem;">xavier_normal_</div><p style="font-size:0.85rem;">Normal distribution variant of Xavier initialization.</p></div>
+          <div class="card"><div style="font-family:var(--mono);color:var(--accent);font-weight:600;margin-bottom:0.5rem;">kaiming_uniform_</div><p style="font-size:0.85rem;">He initialization for ReLU networks — accounts for the non-linearity.</p></div>
+          <div class="card"><div style="font-family:var(--mono);color:var(--accent);font-weight:600;margin-bottom:0.5rem;">kaiming_normal_</div><p style="font-size:0.85rem;">Normal Kaiming init — works well for deep ReLU networks.</p></div>
+          <div class="card"><div style="font-family:var(--mono);color:var(--accent);font-weight:600;margin-bottom:0.5rem;">orthogonal_</div><p style="font-size:0.85rem;">Orthogonal matrix init. Preserves gradient norms in deep networks.</p></div>
+          <div class="card"><div style="font-family:var(--mono);color:var(--accent);font-weight:600;margin-bottom:0.5rem;">init_module()</div><p style="font-size:0.85rem;">Apply initialization to a whole module recursively with one call.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-brand" style="display:inline-flex;margin-bottom:1rem;"><div class="nav-logo">LM</div>LowMind</a>
+          <p>Ultra-lightweight deep learning for Raspberry Pi and resource-constrained environments.</p>
+        </div>
+        <div class="footer-col"><h5>Framework</h5><ul><li><a href="features.html">Features</a></li><li><a href="api.html">API Reference</a></li><li><a href="examples.html">Examples</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
+        <div class="footer-col"><h5>Getting Started</h5><ul><li><a href="installation.html">Installation</a></li><li><a href="installation.html#quickstart">Quick Start</a></li><li><a href="installation.html#raspberry-pi">Raspberry Pi</a></li></ul></div>
+        <div class="footer-col"><h5>Resources</h5><ul><li><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a></li><li><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 LowMind by Dhaval Vedra. MIT License.</p>
+        <div class="footer-links"><a href="https://github.com/dhaval-vedra/lowmind" target="_blank">GitHub</a><a href="https://pypi.org/project/lowmind/" target="_blank">PyPI</a><a href="changelog.html">v2.1.0</a></div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
